@@ -1,0 +1,6 @@
+.idea/
+*.py[cod]
+venv/
+node_modules/
+instance/
+

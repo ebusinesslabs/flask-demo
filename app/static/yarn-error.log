@@ -1,0 +1,32 @@
+Arguments: 
+  /usr/local/bin/node /Users/dvossos/.yarn/bin/yarn.js install bootstrap
+
+PATH: 
+  /Users/dvossos/PythonProjects/flask-demo/venv/bin:/Users/dvossos/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/dvossos/.yarn/bin:/Users/dvossos/AndroidStudioProjects/android-sdk-mac_x86/platform-tools:/Users/dvossos/Applications:/Users/dvossos/AndroidStudioProjects/android-sdk-mac_x86/tools:/Users/dvossos/AndroidStudioProjects/android-sdk-mac_x86/platform-tools:/Users/dvossos/Applications:/Users/dvossos/AndroidStudioProjects/android-sdk-mac_x86/tools
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.11.2
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: `install` has been replaced with `add` to add new dependencies. Run "yarn add bootstrap" instead.
+      at new MessageError (/Users/dvossos/.yarn/lib/cli.js:186:110)
+      at Object.<anonymous> (/Users/dvossos/.yarn/lib/cli.js:21987:13)
+      at Generator.next (<anonymous>)
+      at step (/Users/dvossos/.yarn/lib/cli.js:98:30)
+      at /Users/dvossos/.yarn/lib/cli.js:109:13
+      at <anonymous>
