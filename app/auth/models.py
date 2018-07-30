@@ -3,6 +3,10 @@ from .. import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
+user_role = db.Table('user_role',
+                     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+                     db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
+                     )
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,10 +14,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password = db.Column(db.String(256))
-    roles = db.Column(db.String(1024))
     status = db.Column(db.Boolean)
     created = db.Column(db.DateTime, default=datetime.utcnow())
-
+    roles = db.relationship(
+        'Role', secondary=user_role
+    )
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -22,4 +27,14 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        print "User<{}, {}>".format(self.username, self.email)
+        return '<User {}>'.format(self.username)
+
+
+class Role(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+
+    def __repr__(self):
+        return '<Role: {}'.format(self.name)
+
+
