@@ -2,4 +2,4 @@ from flask import Blueprint
 
 bp = Blueprint('auth', __name__)
 
-from . import models
+from . import models, routes, forms
