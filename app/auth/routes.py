@@ -1,6 +1,6 @@
 from ..auth import bp
 from flask import render_template, redirect, url_for, flash, request
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 from flask_login import current_user, login_user, logout_user
 from .models import User
 
@@ -28,7 +28,8 @@ def login():
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    pass
+    register_form = RegisterForm()
+    return render_template('auth/register.html', form = register_form)
 
 
 @bp.route('/logout')

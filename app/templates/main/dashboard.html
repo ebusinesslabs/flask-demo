@@ -1,5 +1,10 @@
-{% extends 'layout.html' %}
+{% extends 'layout/layout.html' %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Dashboard</li>
+{% endblock %}
 {% block content %}
-    This is the dashboard page.
+    <p>
+        {{ current_user }}
+    </p>
 {% endblock %}
