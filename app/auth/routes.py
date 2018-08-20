@@ -29,6 +29,16 @@ def login():
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     register_form = RegisterForm()
+    if register_form.validate_on_submit():
+        user = User()
+        user.fullname = register_form.fullname.data
+        user.username = register_form.username.data
+        user.set_password(register_form.password.data)
+        user.email = register_form.email.data
+        user.status = True
+        user.save()
+        flash('You are now a registered user.', category='success')
+        return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form = register_form)
 
 
