@@ -2,7 +2,7 @@ from ..auth import bp
 from flask import render_template, redirect, url_for, flash, request
 from .forms import LoginForm, RegisterForm
 from flask_login import current_user, login_user, logout_user
-from .models import User
+from .models import User, Role
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -36,6 +36,8 @@ def register():
         user.set_password(register_form.password.data)
         user.email = register_form.email.data
         user.status = True
+        role = Role(name = 'User')
+        user.roles = [role]
         user.save()
         flash('You are now a registered user.', category='success')
         return redirect(url_for('auth.login'))
