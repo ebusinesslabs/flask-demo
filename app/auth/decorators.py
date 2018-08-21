@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import redirect, flash, url_for
+from flask import redirect, flash, url_for, abort
 from flask_login import current_user
 
 
@@ -17,8 +17,7 @@ def role_required(*allowed_roles):
                 if role.name in allowed_roles:
                     return f(*args, **kwargs)
 
-            flash('You do not have permission to view this resource', category='danger')
-            return redirect(url_for('main.index'))
+            abort(403)
 
         return decorated_function
 
