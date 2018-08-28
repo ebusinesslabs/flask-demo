@@ -6,4 +6,4 @@ node_modules/
 instance/
 app.db
 migrations/
-
+logs/

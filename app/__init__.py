@@ -2,6 +2,9 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import os
+import logging
+from logging.handlers import RotatingFileHandler
 
 
 db = SQLAlchemy()
@@ -27,5 +30,14 @@ def create_app():
 
     from .auth import bp as auth_bp
     app.register_blueprint(auth_bp)
+
+    # logger file handler when DEBUG = False
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+    file_handler = RotatingFileHandler('logs/flask-demo.log', maxBytes=10240, backupCount=10)
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s '
+        '[in %(pathname)s:%(lineno)d]'))
+    app.logger.addHandler(file_handler)
 
     return app
