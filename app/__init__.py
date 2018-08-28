@@ -19,6 +19,9 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
+    from .errors import bp as errors_bp
+    app.register_blueprint(errors_bp)
+
     from .main import bp as main_bp
     app.register_blueprint(main_bp)
 
