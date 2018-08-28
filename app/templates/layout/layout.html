@@ -34,6 +34,22 @@
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsers"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-users"></i>
+                    <span class="nav-link-text">Users</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseUsers">
+                    <li>
+                        <a href="{{ url_for('users.list_users') }}">List</a>
+                    </li>
+                    <li>
+                        <a href="#">Add</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">

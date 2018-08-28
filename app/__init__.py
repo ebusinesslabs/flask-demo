@@ -31,6 +31,9 @@ def create_app():
     from .auth import bp as auth_bp
     app.register_blueprint(auth_bp)
 
+    from .users import bp as users_bp
+    app.register_blueprint(users_bp)
+
     # logger file handler when DEBUG = False
     if not os.path.exists('logs'):
         os.mkdir('logs')

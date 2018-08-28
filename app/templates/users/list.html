@@ -1,0 +1,35 @@
+{% extends 'layout/layout.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Users</li>
+{% endblock %}
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col" class="text-center">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td class="text-center">
+                    {% if user.status %}
+                        <i class="fa fa-check text-success" title="Active">&nbsp;</i>
+                    {% else %}
+                        <i class="fa fa-ban text-danger" title="Inactive"></i>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
