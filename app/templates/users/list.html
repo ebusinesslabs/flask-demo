@@ -17,7 +17,7 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <th scope="row">{{ user.id }}</th>
+                <th scope="row"><a href="{{ url_for('users.user_update', id=user.id) }}">{{ user.id }}</a></th>
                 <td>{{ user.fullname }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>

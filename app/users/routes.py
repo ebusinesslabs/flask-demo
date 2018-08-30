@@ -4,6 +4,7 @@ from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User
 
+
 @bp.route('/users')
 @login_required
 @role_required('Administrator')
@@ -12,6 +13,6 @@ def list_users():
     return render_template('users/list.html', users=users)
 
 
-@bp.route('/user/<iid>', methods=['GET', 'POST'])
-def user_update():
+@bp.route('/user/<id>', methods=['GET', 'POST'])
+def user_update(id):
     pass
