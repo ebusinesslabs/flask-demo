@@ -3,6 +3,7 @@ from . import bp
 from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User
+from .forms import UpdateForm
 
 
 @bp.route('/users')
@@ -15,4 +16,6 @@ def list_users():
 
 @bp.route('/user/<id>', methods=['GET', 'POST'])
 def user_update(id):
-    pass
+    user = User.query.get(id)
+    form = UpdateForm(obj=user)
+    return render_template('users/update.html', form=form)

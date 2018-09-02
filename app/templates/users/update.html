@@ -1,0 +1,24 @@
+{% extends 'layout/layout.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ url_for('users.list_users') }}">Users</a></li>
+    <li class="breadcrumb-item active">Edit user</li>
+{% endblock %}
+{% block content %}
+    <form method="post" action="" novalidate>
+        <div class="form-group">
+            {{ form.fullname.label }}
+            {{ form.fullname(class='form-control') }}
+            {% for error in form.fullname.errors %}
+                <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class='form-control') }}
+            {% for error in form.email.errors %}
+                <span style="color:red">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {{ form.submit(class='btn btn-success float-right') }}
+    </form>
+{% endblock %}
