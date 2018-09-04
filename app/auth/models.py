@@ -34,6 +34,8 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return '<User: {}, {}, {}>'.format(self.username, self.email, self.fullname)
 
+    def __str__(self):
+        return self.username
 
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,6 +43,13 @@ class Role(db.Model):
 
     def __repr__(self):
         return '<Role: {}>'.format(self.name)
+
+    def __str__(self):
+        return self.name
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
 @login.user_loader
 def load_user(id):
