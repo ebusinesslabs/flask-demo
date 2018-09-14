@@ -21,13 +21,13 @@ def user_update(id):
     if form.validate_on_submit():
         user.fullname = form.fullname.data
         user.username = form.username.data
-        if form.password.data is None:
+        if form.password.data is not None:
             user.set_password(form.password.data)
         user.email = form.email.data
-        user.status = True
-        role = Role(name='User')
-        user.roles = [role]
+        user.status = form.status.data
+        user.roles = form.roles.data
         user.save()
         flash('User saved successfully.', category='success')
-        return redirect(url_for('list_users'))
+        return redirect(url_for('users.list_users'))
+    print form.errors
     return render_template('users/update.html', form=form)

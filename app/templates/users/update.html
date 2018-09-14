@@ -6,47 +6,75 @@
 {% block content %}
     <form method="post" action="" novalidate>
         <div class="form-group">
+            {{ form.hidden_tag() }}
+        </div>
+        <div class="form-group">
             <h2>{{ form.id.label }}: {{ form.id.data }}</h2>
         </div>
+        <hr/>
         <div class="form-group">
             {{ form.fullname.label }}
             {{ form.fullname(class='form-control') }}
             {% for error in form.fullname.errors %}
-                <span style="color:red;">{{ error }}</span>
+                <small class="form-text text-danger">{{ error }}</small>
             {% endfor %}
         </div>
         <div class="form-group">
             {{ form.email.label }}
             {{ form.email(class='form-control') }}
+            <ul>
             {% for error in form.email.errors %}
-                <span style="color:red">{{ error }}</span>
+                <li><small class="form-text text-danger">{{ error }}</small></li>
             {% endfor %}
+            </ul>
         </div>
         <div class="form-group">
             {{ form.username.label }}
             {{ form.username(class='form-control') }}
+            <ul>
             {% for error in form.username.errors %}
-                <span style="color:red">{{ error }}</span>
+                <li><small class="form-text text-danger">{{ error }}</small></li>
             {% endfor %}
+            </ul>
         </div>
         <div class="form-group">
             {{ form.password.label }}
-            {{ form.password(class='form-control') }}
+            {{ form.password(class='form-control', placeholder='type at least 8 characters') }}
+            <ul>
             {% for error in form.password.errors %}
-                <span style="color:red">{{ error }}</span>
+                <li><small class="form-text text-danger">{{ error }}</small></li>
             {% endfor %}
+            </ul>
         </div>
         <div class="form-group">
             {{ form.confirm_password.label }}
-            {{ form.confirm_password(class='form-control') }}
+            {{ form.confirm_password(class='form-control', placeholder='type at least 8 characters') }}
+            <ul>
             {% for error in form.confirm_password.errors %}
-                <span style="color:red">{{ error }}</span>
+                <li><small class="form-text text-danger">{{ error }}</small></li>
             {% endfor %}
+            </ul>
         </div>
         <div class="form-group">
             {{ form.roles.label }}
             {{ form.roles(class='form-control') }}
         </div>
-        {{ form.submit(class='btn btn-success float-right') }}
+        <div class="form-group">
+            {{ form.status.label }}
+            <div>{{ form.status }}</div>
+        </div>
+        <div>
+            {{ form.submit(class='btn btn-success float-right') }}
+        </div>
+
     </form>
+{% endblock %}
+
+{% block inlinejs %}
+<script>
+    $(document).ready(function () {
+        $("#roles").select2();
+        $("#status").bootstrapSwitch();
+    })
+</script>
 {% endblock %}

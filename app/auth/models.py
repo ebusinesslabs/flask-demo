@@ -37,6 +37,7 @@ class User(db.Model, UserMixin):
     def __str__(self):
         return self.username
 
+
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
@@ -50,6 +51,7 @@ class Role(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
 
 @login.user_loader
 def load_user(id):

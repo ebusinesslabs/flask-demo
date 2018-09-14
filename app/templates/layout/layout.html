@@ -15,6 +15,10 @@
           type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ url_for('static', filename='node_modules/select2/dist/css/select2.css') }}" rel="stylesheet">
+    <!-- Bootstrap-switch -->
+    <link href="{{ url_for('static', filename='node_modules/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css') }}" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -139,6 +143,12 @@
     <script src="{{ url_for('static', filename='node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js') }}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ url_for('static', filename='js/sb-admin.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ url_for('static', filename='node_modules/select2/dist/js/select2.js') }}"></script>
+    <!-- Boottrap-switch -->
+    <script src="{{ url_for('static', filename='node_modules/bootstrap-switch/dist/js/bootstrap-switch.js') }}"></script>
+
+    {% block inlinejs %}{% endblock %}
 </div>
 </body>
 
