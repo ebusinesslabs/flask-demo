@@ -19,6 +19,8 @@
     <link href="{{ url_for('static', filename='node_modules/select2/dist/css/select2.css') }}" rel="stylesheet">
     <!-- Bootstrap-switch -->
     <link href="{{ url_for('static', filename='node_modules/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css') }}" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="{{ url_for('static', filename='node_modules/pnotify/dist/PNotifyBrightTheme.css') }}" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -147,6 +149,10 @@
     <script src="{{ url_for('static', filename='node_modules/select2/dist/js/select2.js') }}"></script>
     <!-- Boottrap-switch -->
     <script src="{{ url_for('static', filename='node_modules/bootstrap-switch/dist/js/bootstrap-switch.js') }}"></script>
+    <!-- PNotify -->
+    <script src="{{ url_for('static', filename='node_modules/pnotify/dist/iife/PNotify.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/pnotify/dist/iife/PNotifyStyleMaterial.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/pnotify/dist/iife/PNotifyButtons.js') }}"></script>
 
     {% block inlinejs %}{% endblock %}
 </div>

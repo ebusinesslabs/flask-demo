@@ -7,15 +7,15 @@ from ..auth.models import Role
 
 
 class UpdateForm(FlaskForm):
-    id = HiddenField(label='ID')
-    fullname = StringField(label='Full Name', validators=[DataRequired()])
-    username = StringField(label='Username', validators=[DataRequired(), UniqueUsername()])
-    email = StringField(label='Email', validators=[DataRequired(), Email(), UniqueEmail()])
-    password = PasswordField(label='Password', validators=[Optional(), Length(min=8)])
-    confirm_password = PasswordField(label='Comfirm Password', validators=[EqualTo('password')])
-    status = BooleanField(label='Status')
-    roles = QuerySelectMultipleField('Roles')
-    submit = SubmitField('Update')
+    id                  = HiddenField(label='ID')
+    fullname            = StringField(label='Full Name', validators=[DataRequired()])
+    username            = StringField(label='Username', validators=[DataRequired(), UniqueUsername()])
+    email               = StringField(label='Email', validators=[DataRequired(), Email(), UniqueEmail()])
+    password            = PasswordField(label='Password', validators=[Optional(), Length(min=8)])
+    confirm_password    = PasswordField(label='Comfirm Password', validators=[EqualTo('password')])
+    status              = BooleanField(label='Status')
+    roles               = QuerySelectMultipleField('Roles')
+    submit              = SubmitField('Update')
 
     def __init__(self, *args, **kwargs):
         FlaskForm.__init__(self, **kwargs)

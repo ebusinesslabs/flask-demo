@@ -18,6 +18,7 @@ def list_users():
 def user_update(id):
     user = User.query.get(id)  # type: User
     form = UpdateForm(obj=user)
+
     if form.validate_on_submit():
         user.fullname = form.fullname.data
         user.username = form.username.data
@@ -29,5 +30,5 @@ def user_update(id):
         user.save()
         flash('User saved successfully.', category='success')
         return redirect(url_for('users.list_users'))
-    print form.errors
+
     return render_template('users/update.html', form=form)

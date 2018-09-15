@@ -33,3 +33,19 @@
         </tbody>
     </table>
 {% endblock %}
+
+{% block inlinejs %}
+    <script>
+        $(document).ready(function () {
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+            PNotify.success({
+                title: 'Saving user',
+                text: '{{ message }}',
+                styling: 'material',
+            });
+            {% endfor %}
+            {% endwith %}
+        });
+    </script>
+{% endblock %}
