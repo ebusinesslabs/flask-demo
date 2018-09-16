@@ -6,7 +6,7 @@ from .validators import UniqueUsername, UniqueEmail
 from ..auth.models import Role
 
 
-class UpdateForm(FlaskForm):
+class ProfileForm(FlaskForm):
     id                  = HiddenField(label='ID')
     fullname            = StringField(label='Full Name', validators=[DataRequired()])
     username            = StringField(label='Username', validators=[DataRequired(), UniqueUsername()])
@@ -20,3 +20,8 @@ class UpdateForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         FlaskForm.__init__(self, **kwargs)
         self.roles.query = Role.query.all()
+
+
+class AddUserForm(ProfileForm):
+    password =  PasswordField(label='Password', validators=[Length(min=8)])
+    submit =    SubmitField('Add')

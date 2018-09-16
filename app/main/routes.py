@@ -14,5 +14,5 @@ def index():
 @login_required
 @role_required('Administrator')
 def dashboard():
-    users_count = User.query.count()
-    return render_template('main/dashboard.html', users_count=users_count)
+    data = {'users_count' :User.query.count()}
+    return render_template('main/dashboard.html', data = data)

@@ -11,9 +11,9 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-users"></i>
               </div>
-              <div class="mr-5">{{ users_count }} users</div>
+                <div class="mr-4"><h1 class="d-inline">{{ data['users_count'] }} <small>users</small></h1> </div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="{{ url_for('users.list_users') }}">
+            <a class="card-footer text-white clearfix small z-1" href="{{ url_for('users.list') }}">
               <span class="float-left">List</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
