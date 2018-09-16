@@ -1,74 +1,75 @@
 {% extends 'layout/layout.html' %}
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{{ url_for('users.list') }}">Users</a></li>
-    <li class="breadcrumb-item active">Add user</li>
+    <li class="breadcrumb-item active">Update user</li>
 {% endblock %}
 {% block content %}
-    <form method="post" action="" novalidate>
-        <div class="form-group">
-            {{ form.hidden_tag() }}
-        </div>
-        <div class="form-group">
-            <h2>{{ form.id.label }}: {{ form.id.data }}</h2>
-        </div>
-        <hr/>
-        <div class="form-group">
-            {{ form.fullname.label }}
-            {{ form.fullname(class='form-control') }}
-            {% for error in form.fullname.errors %}
-                <small class="form-text text-danger">{{ error }}</small>
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            {{ form.email.label }}
-            {{ form.email(class='form-control') }}
-            <ul>
-            {% for error in form.email.errors %}
-                <li><small class="form-text text-danger">{{ error }}</small></li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="form-group">
-            {{ form.username.label }}
-            {{ form.username(class='form-control') }}
-            <ul>
-            {% for error in form.username.errors %}
-                <li><small class="form-text text-danger">{{ error }}</small></li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="form-group">
-            {{ form.password.label }}
-            {{ form.password(class='form-control', placeholder='type at least 8 characters') }}
-            <ul>
-            {% for error in form.password.errors %}
-                <li><small class="form-text text-danger">{{ error }}</small></li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="form-group">
-            {{ form.confirm_password.label }}
-            {{ form.confirm_password(class='form-control', placeholder='type at least 8 characters') }}
-            <ul>
-            {% for error in form.confirm_password.errors %}
-                <li><small class="form-text text-danger">{{ error }}</small></li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="form-group">
-            {{ form.roles.label }}
-            {{ form.roles(class='form-control') }}
-        </div>
-        <div class="form-group">
-            {{ form.status.label }}
-            <div>{{ form.status }}</div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary float-right ml-1" id="btn-cancel">Cancel</button>
-            {{ form.submit(class='btn btn-success float-right') }}
-        </div>
+    <div class="card mt-3">
+        <div class="card-header"><h3>Update user with {{ form.id.label }}: #{{ form.id.data }}</h3></div>
+        <div class="card-body">
+            <form method="post" action="" novalidate>
+                <div class="form-group">
+                    {{ form.hidden_tag() }}
+                </div>
+                <div class="form-group">
+                    {{ form.fullname.label }}
+                    {{ form.fullname(class='form-control') }}
+                    {% for error in form.fullname.errors %}
+                        <small class="form-text text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class='form-control') }}
+                    <ul>
+                    {% for error in form.email.errors %}
+                        <li><small class="form-text text-danger">{{ error }}</small></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="form-group">
+                    {{ form.username.label }}
+                    {{ form.username(class='form-control') }}
+                    <ul>
+                    {% for error in form.username.errors %}
+                        <li><small class="form-text text-danger">{{ error }}</small></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class='form-control', placeholder='type at least 8 characters') }}
+                    <ul>
+                    {% for error in form.password.errors %}
+                        <li><small class="form-text text-danger">{{ error }}</small></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label }}
+                    {{ form.confirm_password(class='form-control', placeholder='type at least 8 characters') }}
+                    <ul>
+                    {% for error in form.confirm_password.errors %}
+                        <li><small class="form-text text-danger">{{ error }}</small></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="form-group">
+                    {{ form.roles.label }}
+                    {{ form.roles(class='form-control') }}
+                </div>
+                <div class="form-group">
+                    {{ form.status.label }}
+                    <div>{{ form.status }}</div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary float-right ml-1" id="btn-cancel">Cancel</button>
+                    {{ form.submit(class='btn btn-success float-right') }}
+                </div>
 
-    </form>
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block inlinejs %}
