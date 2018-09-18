@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), index=True, unique=True)
     password = db.Column(db.String(256))
     status = db.Column(db.Boolean)
+    # Note the lack of parenthesis after datetime.utcnow
+    # You need to pass the callable itself not calling the function immediately
     created = db.Column(db.DateTime, default=datetime.utcnow)
     roles = db.relationship(
         'Role', secondary=user_role
