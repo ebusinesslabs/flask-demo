@@ -21,6 +21,8 @@
     <link href="{{ url_for('static', filename='node_modules/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css') }}" rel="stylesheet">
     <!-- PNotify -->
     <link href="{{ url_for('static', filename='node_modules/pnotify/dist/PNotifyBrightTheme.css') }}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{{ url_for('static', filename='node_modules/datatables/media/css/jquery.dataTables.css') }}" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -153,7 +155,10 @@
     <script src="{{ url_for('static', filename='node_modules/pnotify/dist/iife/PNotify.js') }}"></script>
     <script src="{{ url_for('static', filename='node_modules/pnotify/dist/iife/PNotifyStyleMaterial.js') }}"></script>
     <script src="{{ url_for('static', filename='node_modules/pnotify/dist/iife/PNotifyButtons.js') }}"></script>
-
+    <!-- DataTables -->
+    <script src="{{ url_for('static', filename='node_modules/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <!-- Charts -->
+    <script src="{{ url_for('static', filename='node_modules/chart.js/dist/Chart.js') }}"></script>
     {% block inlinejs %}{% endblock %}
 </div>
 </body>
