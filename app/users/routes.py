@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from . import bp
 from flask_login import login_required
 from ..auth.decorators import role_required
@@ -10,7 +10,8 @@ from .forms import ProfileForm, AddUserForm
 @login_required
 @role_required('Administrator')
 def list():
-    users = User.query.order_by(User.id).all()
+    page = request.args.get('page', 1, type=int)
+    users = User.query.order_by(User.id).paginate(page, 10, False)
     return render_template('users/list.html', users=users)
 
 

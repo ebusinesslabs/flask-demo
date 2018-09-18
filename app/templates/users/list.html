@@ -1,5 +1,5 @@
 {% extends 'layout/layout.html' %}
-
+{% from 'macro/pagination.html' import render_pagination %}
 {% block breadcrumb %}
     <li class="breadcrumb-item active">Users</li>
 {% endblock %}
@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for user in users %}
+                {% for user in users.items %}
                     <tr>
                         <th scope="row"><a href="{{ url_for('users.update', id=user.id) }}">{{ user.id }}</a></th>
                         <td>{{ user.fullname }}</td>
@@ -36,6 +36,13 @@
                     </tr>
                 {% endfor %}
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            {{ render_pagination(users, 'users.list') }}
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
