@@ -4,7 +4,7 @@ from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User, Role
 from .forms import ProfileForm, AddUserForm
-
+from datetime import datetime
 
 @bp.route('/users')
 @login_required
@@ -25,7 +25,7 @@ def update(id):
     if form.validate_on_submit():
         user.fullname = form.fullname.data
         user.username = form.username.data
-        if form.password.data is not None:
+        if form.password.data:
             user.set_password(form.password.data)
         user.email = form.email.data
         user.status = form.status.data
