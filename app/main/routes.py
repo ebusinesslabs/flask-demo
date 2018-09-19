@@ -15,11 +15,15 @@ def index():
 @login_required
 @role_required('Administrator')
 def dashboard():
-    records = User.query.with_entities(User.created, func.count()).group_by(func.date(User.created)).all()
+    records = User.query.with_entities(User.created, func.count())\
+        .filter("strftime('%Y', created)='2018'")\
+        .group_by(func.date(User.created))\
+        .all()
     users = []
     dates = []
     for record in records:
         users.append(record[1])
         dates.append(record[0].strftime('%d/%m/%Y'))
+
     data = {'users_count': User.query.count(), 'users': users, 'dates': dates}
     return render_template('main/dashboard.html', data=data)
