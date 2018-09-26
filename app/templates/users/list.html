@@ -9,41 +9,43 @@
             <h3>List of users</h3>
         </div>
         <div class="card-body">
-            <table class="table">
-                <thead class="thead-ssecondary">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Full name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col" class="text-center">Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in users.items %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-ssecondary">
                     <tr>
-                        <th scope="row"><a href="{{ url_for('users.update', id=user.id) }}">{{ user.id }}</a></th>
-                        <td>{{ user.fullname }}</td>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
-                        <td class="text-center">
-                            {% if user.status %}
-                                <i class="fa fa-check text-success" title="Active">&nbsp;</i>
-                            {% else %}
-                                <i class="fa fa-ban text-danger" title="Inactive"></i>
-                            {% endif %}
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Full name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" class="text-center">Status</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">
-                            {{ render_pagination(users, 'users.list') }}
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for user in users.items %}
+                        <tr>
+                            <th scope="row"><a href="{{ url_for('users.update', id=user.id) }}">{{ user.id }}</a></th>
+                            <td>{{ user.fullname }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td class="text-center">
+                                {% if user.status %}
+                                    <i class="fa fa-check text-success" title="Active">&nbsp;</i>
+                                {% else %}
+                                    <i class="fa fa-ban text-danger" title="Inactive"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                {{ render_pagination(users, 'users.list') }}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}
