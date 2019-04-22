@@ -15,8 +15,10 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password.')
-            return redirect(url_for('auth.login'))
+            user = User.query.filter_by(email=form.username.data).first()
+            if user is None or not user.check_password(form.password.data):
+                flash('Invalid username or password.')
+                return redirect(url_for('auth.login'))
         if not user.status:
             flash('Your account has beeen disabled.')
             return redirect(url_for('auth.login'))

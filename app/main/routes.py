@@ -3,8 +3,7 @@ from flask import render_template
 from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User
-from sqlalchemy import func
-
+from sqlalchemy import func, text
 
 @bp.route('/')
 def index():
@@ -16,7 +15,7 @@ def index():
 @role_required('Administrator')
 def dashboard():
     records = User.query.with_entities(User.created, func.count())\
-        .filter("strftime('%Y', created)='2018'")\
+        .filter(text("strftime('%Y', created)='2018'"))\
         .group_by(func.date(User.created))\
         .all()
     users = []
