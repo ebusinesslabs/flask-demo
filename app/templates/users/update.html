@@ -1,11 +1,11 @@
 {% extends 'layout/layout.html' %}
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{{ url_for('users.list') }}">Users</a></li>
-    <li class="breadcrumb-item active">Update user</li>
+    <li class="breadcrumb-item active">{{ _('Update user') }}</li>
 {% endblock %}
 {% block content %}
     <div class="card mt-3">
-        <div class="card-header"><h3>Update user with {{ form.id.label }}: #{{ form.id.data }}</h3></div>
+        <div class="card-header"><h3>{{ _('Update user with') }} {{ form.id.label }}: #{{ form.id.data }}</h3></div>
         <div class="card-body">
             <form method="post" action="" novalidate>
                 <div class="form-group">

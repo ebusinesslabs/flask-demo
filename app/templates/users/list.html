@@ -1,12 +1,12 @@
 {% extends 'layout/layout.html' %}
 {% from 'macro/pagination.html' import render_pagination %}
 {% block breadcrumb %}
-    <li class="breadcrumb-item active">Users</li>
+    <li class="breadcrumb-item active">{{ _('Users') }}</li>
 {% endblock %}
 {% block content %}
     <div class="card">
         <div class="card-header">
-            <h3>List of users</h3>
+            <h3>{{ _('List of users') }}</h3>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -14,9 +14,9 @@
                     <thead class="thead-ssecondary">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Full name</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">{{ _('Full name') }}</th>
+                        <th scope="col">{{ _('Username') }}</th>
+                        <th scope="col">{{ _('Email') }}</th>
                         <th scope="col" class="text-center">Status</th>
                     </tr>
                     </thead>

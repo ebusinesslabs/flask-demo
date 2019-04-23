@@ -4,16 +4,16 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
 from .validators import UniqueUsername, UniqueEmail
 from ..auth.models import Role
-
+from flask_babel import lazy_gettext as _l
 
 class ProfileForm(FlaskForm):
     id                  = HiddenField(label='ID')
-    fullname            = StringField(label='Full Name', validators=[DataRequired()])
-    username            = StringField(label='Username', validators=[DataRequired(), UniqueUsername()])
-    email               = StringField(label='Email', validators=[DataRequired(), Email(), UniqueEmail()])
-    password            = PasswordField(label='Password', validators=[Optional(), Length(min=8)])
-    confirm_password    = PasswordField(label='Comfirm Password', validators=[EqualTo('password')])
-    status              = BooleanField(label='Status')
+    fullname            = StringField(label=_l('Full name'), validators=[DataRequired()])
+    username            = StringField(label=_l('Username'), validators=[DataRequired(), UniqueUsername()])
+    email               = StringField(label=_l('Email'), validators=[DataRequired(), Email(), UniqueEmail()])
+    password            = PasswordField(label=_l('Password'), validators=[Optional(), Length(min=8)])
+    confirm_password    = PasswordField(label=_l('Comfirm Password'), validators=[EqualTo('password')])
+    status              = BooleanField(label=_l('Status'))
     roles               = QuerySelectMultipleField('Roles')
     submit              = SubmitField('Update')
 
@@ -23,5 +23,5 @@ class ProfileForm(FlaskForm):
 
 
 class AddUserForm(ProfileForm):
-    password =  PasswordField(label='Password', validators=[Length(min=8)])
+    password =  PasswordField(label=_l('Password'), validators=[Length(min=8)])
     submit =    SubmitField('Add')

@@ -4,7 +4,7 @@ from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User, Role
 from .forms import ProfileForm, AddUserForm
-from datetime import datetime
+from flask_babel import _
 
 @bp.route('/users')
 @login_required
@@ -31,7 +31,7 @@ def update(id):
         user.status = form.status.data
         user.roles = form.roles.data
         user.save()
-        flash('User saved successfully.', category='success')
+        flash(_('User saved successfully.'), category='success')
         return redirect(url_for('users.list'))
 
     return render_template('users/update.html', form=form)
@@ -51,7 +51,7 @@ def add():
         user.status = form.status.data
         user.roles = form.roles.data
         user.save()
-        flash('User saved successfully.', category='success')
+        flash(_('User saved successfully.'), category='success')
         return redirect(url_for('users.list'))
 
     return render_template('users/add.html', form=form)

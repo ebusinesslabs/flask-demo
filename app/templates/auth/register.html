@@ -1,6 +1,6 @@
 {% extends 'layout/sign_base.html' %}
 
-{% block form_title %}Register{% endblock %}
+{% block form_title %}{{ _('Register') }}{% endblock %}
 
 {% block content %}
     <form method="post" action="" novalidate>
@@ -51,8 +51,8 @@
 
 {% block footer %}
     <div class="text-center">
-        <a class="d-block small mt-3" href="{{ url_for('auth.login') }}">Login page</a>
-        <a class="d-block small" href="{{ url_for('main.index') }}">Home page</a>
+        <a class="d-block small mt-3" href="{{ url_for('auth.login') }}">{{ _('Login page') }}</a>
+        <a class="d-block small" href="{{ url_for('main.index') }}">{{ _('Home page') }}</a>
     </div>
 
 {% endblock %}

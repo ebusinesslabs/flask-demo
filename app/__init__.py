@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, request, current_app
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 import logging
 from logging.handlers import RotatingFileHandler
+from flask_babel import Babel
 
 
 db = SQLAlchemy()
@@ -12,7 +13,7 @@ login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message_category = 'info'
 migrate = Migrate()
-
+babel = Babel()
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -21,6 +22,7 @@ def create_app():
     login.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db)
+    babel.init_app(app)
 
     from .errors import bp as errors_bp
     app.register_blueprint(errors_bp)
@@ -44,3 +46,7 @@ def create_app():
     app.logger.addHandler(file_handler)
 
     return app
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
