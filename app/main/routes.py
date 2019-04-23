@@ -15,7 +15,6 @@ def index():
 @role_required('Administrator')
 def dashboard():
     records = User.query.with_entities(User.created, func.count())\
-        .filter(text("strftime('%Y', created)='2018'"))\
         .group_by(func.date(User.created))\
         .all()
     users = []
