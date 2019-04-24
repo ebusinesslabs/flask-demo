@@ -1,4 +1,4 @@
-from flask import Flask, request, current_app
+from flask import Flask, request, current_app, g
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -26,15 +26,19 @@ def create_app():
 
     from .errors import bp as errors_bp
     app.register_blueprint(errors_bp)
+    app.register_blueprint(errors_bp, url_prefix='/<lang_code>')
 
     from .main import bp as main_bp
     app.register_blueprint(main_bp)
+    app.register_blueprint(main_bp, url_prefix='/<lang_code>')
 
     from .auth import bp as auth_bp
     app.register_blueprint(auth_bp)
+    app.register_blueprint(auth_bp, url_prefix='/<lang_code>')
 
     from .users import bp as users_bp
     app.register_blueprint(users_bp)
+    app.register_blueprint(users_bp, url_prefix='/<lang_code>')
 
     # logger file handler when DEBUG = False
     if not os.path.exists('logs'):
@@ -49,4 +53,5 @@ def create_app():
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
+    return g.get('lang_code', current_app.config['BABEL_DEFAULT_LOCALE'])
+    #return request.accept_languages.best_match(current_app.config['LANGUAGES'])

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-23 14:41+0300\n"
-"PO-Revision-Date: 2019-04-23 14:43+0300\n"
+"POT-Creation-Date: 2019-04-24 18:04+0300\n"
+"PO-Revision-Date: 2019-04-24 18:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: el <LL@li.org>\n"
 "Language: el\n"
@@ -18,6 +18,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.6.0\n"
 "X-Generator: Poedit 2.2.1\n"
+
+#: app/auth/forms.py:8 app/auth/forms.py:17 app/templates/users/list.html:18
+#: app/users/forms.py:13
+msgid "Username"
+msgstr "Κωδικός"
+
+#: app/auth/forms.py:9 app/auth/forms.py:18 app/users/forms.py:15
+#: app/users/forms.py:27
+msgid "Password"
+msgstr "Συνθηματικό"
+
+#: app/auth/forms.py:10
+msgid "Remember me"
+msgstr "Θυμήσου με"
+
+#: app/auth/forms.py:15
+msgid "Fullname"
+msgstr "Ονοματεπώνυμο"
+
+#: app/auth/forms.py:16 app/templates/users/list.html:19 app/users/forms.py:14
+msgid "Email"
+msgstr "Ηλ. διεύθυνση"
+
+#: app/auth/forms.py:19 app/users/forms.py:16
+msgid "Comfirm Password"
+msgstr "Επιβεβαίωση συνθηματικού"
+
+#: app/auth/forms.py:20 app/templates/auth/register.html:3
+msgid "Register"
+msgstr "Εγγραφή"
+
+#: app/auth/forms.py:23 app/users/forms.py:18
+msgid "Roles"
+msgstr "Ρόλοι"
 
 #: app/templates/auth/login.html:3 app/templates/layout/layout.html:86
 msgid "Login"
@@ -30,10 +64,6 @@ msgstr "Εγγραφή λογαριασμού"
 #: app/templates/auth/login.html:36
 msgid "Forgot Password?"
 msgstr "Ξέχασες το συνθηματικό;"
-
-#: app/templates/auth/register.html:3
-msgid "Register"
-msgstr "Εγγραφή"
 
 #: app/templates/auth/register.html:54
 msgid "Login page"
@@ -60,23 +90,24 @@ msgstr "Λίστα"
 msgid "Add"
 msgstr "Προσθήκη"
 
-#: app/templates/layout/layout.html:91 app/templates/layout/layout.html:139
+#: app/templates/layout/layout.html:91 app/templates/layout/layout.html:148
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: app/templates/layout/layout.html:102
+#: app/templates/layout/layout.html:111
 msgid "Home"
 msgstr "Αρχή"
 
-#: app/templates/layout/layout.html:131
+#: app/templates/layout/layout.html:140
 msgid "Ready to Leave?"
 msgstr "Θέλεις να αποσυνδεθείς;"
 
-#: app/templates/layout/layout.html:136
+#: app/templates/layout/layout.html:145
 msgid "Select \"Logout\" below if you are ready to end your current session."
 msgstr "Επίλεξε “Αποσύνδεση” αν επιθυμείς να τερματίσεις την τρέχουσα συνεδρία."
 
-#: app/templates/layout/layout.html:138
+#: app/templates/layout/layout.html:147 app/templates/users/add.html:66
+#: app/templates/users/update.html:66
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -104,17 +135,13 @@ msgstr "Δημιουργία νέου χρήστη"
 msgid "List of users"
 msgstr "Λίστα χρηστών"
 
-#: app/templates/users/list.html:17 app/users/forms.py:11
+#: app/templates/users/list.html:17 app/users/forms.py:12
 msgid "Full name"
 msgstr "Ονοματεπώνυμο"
 
-#: app/templates/users/list.html:18 app/users/forms.py:12
-msgid "Username"
-msgstr "Κωδικός"
-
-#: app/templates/users/list.html:19 app/users/forms.py:13
-msgid "Email"
-msgstr "Ηλ. διεύθυνση"
+#: app/templates/users/list.html:20 app/users/forms.py:17
+msgid "Status"
+msgstr "Κατάσταση"
 
 #: app/templates/users/update.html:4
 msgid "Update user"
@@ -124,17 +151,13 @@ msgstr "Τροποποίηση χρήστη"
 msgid "Update user with"
 msgstr "Τροποποίηση του χρήστη με"
 
-#: app/users/forms.py:14 app/users/forms.py:26
-msgid "Password"
-msgstr "Συνθηματικό"
+#: app/users/forms.py:19
+msgid "Update"
+msgstr "Τροποποίηση"
 
-#: app/users/forms.py:15
-msgid "Comfirm Password"
-msgstr "Επιβεβαίωση συνθηματικού"
-
-#: app/users/forms.py:16
-msgid "Status"
-msgstr "Κατάσταση"
+#: app/users/forms.py:28
+msgid "Save"
+msgstr "Αποθήκευση"
 
 #: app/users/routes.py:34 app/users/routes.py:54
 msgid "User saved successfully."

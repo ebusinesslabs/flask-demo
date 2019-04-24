@@ -91,6 +91,15 @@
                         <i class="fa fa-fw fa-sign-out"></i>{{ _('Logout') }}</a>
                 </li>
             {% endif %}
+            {%  if not 'el' in request.path %}
+                <li class="nav-item">
+                    <a href="/el{{ request.path }}" class="nav-link">EL</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{{ request.url | replace('el/', '') }}" class="nav-link">EN</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
