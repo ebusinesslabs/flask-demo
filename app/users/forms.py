@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, HiddenField, PasswordField, BooleanField
+from flask_wtf.file import FileAllowed
+from wtforms import StringField, SubmitField, HiddenField, PasswordField, BooleanField, FileField
 from wtforms.ext.sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
 from .validators import UniqueUsername, UniqueEmail
@@ -15,6 +16,7 @@ class ProfileForm(FlaskForm):
     password = PasswordField(label=_l('Password'), validators=[Optional(), Length(min=8)])
     confirm_password = PasswordField(label=_l('Comfirm Password'), validators=[EqualTo('password')])
     status = BooleanField(label=_l('Status'))
+    image = FileField(label=_l('Image'), validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'jpg or png')])
     roles = QuerySelectMultipleField(_l('Roles'))
     submit = SubmitField(_l('Update'))
 

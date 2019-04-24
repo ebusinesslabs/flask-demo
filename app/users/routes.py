@@ -1,10 +1,13 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, current_app
 from . import bp
 from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User, Role
 from .forms import ProfileForm, AddUserForm
 from flask_babel import _
+import os
+import uuid
+
 
 @bp.route('/users')
 @login_required
@@ -30,6 +33,12 @@ def update(id):
         user.email = form.email.data
         user.status = form.status.data
         user.roles = form.roles.data
+        if form.image.data:
+            image = form.image.data
+            extension = os.path.splitext(image.filename)[1]
+            unigue_filename = uuid.uuid4().hex + extension
+            image.save(os.path.join(current_app.config['UPLOAD_FOLDER'], unigue_filename))
+            user.image = unigue_filename
         user.save()
         flash(_('User saved successfully.'), category='success')
         return redirect(url_for('users.list'))

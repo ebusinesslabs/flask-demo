@@ -7,7 +7,7 @@
     <div class="card mt-3">
         <div class="card-header"><h3>{{ _('Update user with') }} {{ form.id.label }}: #{{ form.id.data }}</h3></div>
         <div class="card-body">
-            <form method="post" action="" novalidate>
+            <form method="post" action="" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     {{ form.hidden_tag() }}
                 </div>
@@ -62,6 +62,21 @@
                     {{ form.status.label }}
                     <div>{{ form.status }}</div>
                 </div>
+                {% if form.image.data is not none %}
+                    <div class="form-group">
+                        <label>{{ _('Existing image') }}</label>&nbsp;&nbsp;&nbsp;
+                        <div class="form-control">
+                            <span class="fa fa-image" aria-hidden="true" data-image-url="{{ form.image.data }}"></span>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    {{ form.image.label }}
+                    {{ form.image(class='form-control') }}
+                    {% for error in form.image.errors %}
+                        <small class="form-text text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
                 <div>
                     <button type="button" class="btn btn-primary float-right ml-1" id="btn-cancel">{{ _('Cancel') }}</button>
                     {{ form.submit(class='btn btn-success float-right') }}
@@ -79,6 +94,17 @@
         $("#btn-cancel").on("click", function () {
             window.location.assign("{{ request.referrer }}");
         });
+
+       $(".fa-image").popover({
+                'container': 'body',
+                'title': 'Photo',
+                'html': true,
+                'trigger': 'hover',
+                'content': function() {
+                        return '<img src="{{ url_for('static', filename='images/' ~ form.image.data) }}' + '" style="width:200px;" alt="user image">'
+                    }
+            });
+
     });
 </script>
 {% endblock %}
