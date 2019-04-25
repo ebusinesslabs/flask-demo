@@ -33,16 +33,10 @@ def update(id):
         user.email = form.email.data
         user.status = form.status.data
         user.roles = form.roles.data
-        if form.image.data:
-            image = form.image.data
-            extension = os.path.splitext(image.filename)[1]
-            unigue_filename = uuid.uuid4().hex + extension
-            image.save(os.path.join(current_app.config['UPLOAD_FOLDER'], unigue_filename))
-            user.image = unigue_filename
+        user.image = upload_image(form.image.data)
         user.save()
         flash(_('User saved successfully.'), category='success')
         return redirect(url_for('users.list'))
-
     return render_template('users/update.html', form=form)
 
 
@@ -59,8 +53,17 @@ def add():
         user.email = form.email.data
         user.status = form.status.data
         user.roles = form.roles.data
+        user.image = upload_image(form.image.data)
         user.save()
         flash(_('User saved successfully.'), category='success')
         return redirect(url_for('users.list'))
 
     return render_template('users/add.html', form=form)
+
+def upload_image(imagedata):
+    if imagedata:
+        extension = os.path.splitext(imagedata.filename)[1]
+        unigue_filename = uuid.uuid4().hex + extension
+        imagedata.save(os.path.join(current_app.config['UPLOAD_FOLDER'], unigue_filename))
+        return unigue_filename
+    return None
