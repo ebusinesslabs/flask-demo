@@ -41,7 +41,7 @@ def register():
         user.set_password(register_form.password.data)
         user.email = register_form.email.data
         user.status = True
-        role = Role(name='User')
+        role = Role.query.filter_by(name='User').first()
         user.roles = [role]
         user.save()
         flash('You are now a registered user.', category='success')
