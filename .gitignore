@@ -5,7 +5,6 @@ venv/
 node_modules/
 instance/
 app.db
-migrations/
 logs/
 app/static/images/*
 !app/static/images/readme.txt
