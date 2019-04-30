@@ -1,4 +1,4 @@
-from flask import Flask, request, current_app, g
+from flask import Flask, current_app, g
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -7,13 +7,13 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask_babel import Babel
 
-
 db = SQLAlchemy()
 login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message_category = 'info'
 migrate = Migrate()
 babel = Babel()
+
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -51,7 +51,8 @@ def create_app():
 
     return app
 
+
 @babel.localeselector
 def get_locale():
     return g.get('lang_code', current_app.config['BABEL_DEFAULT_LOCALE'])
-    #return request.accept_languages.best_match(current_app.config['LANGUAGES'])
+    # return request.accept_languages.best_match(current_app.config['LANGUAGES'])

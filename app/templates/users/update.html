@@ -4,8 +4,13 @@
     <li class="breadcrumb-item active">{{ _('Update user') }}</li>
 {% endblock %}
 {% block content %}
-    <div class="card mt-3">
-        <div class="card-header"><h3>{{ _('Update user with') }} {{ form.id.label }}: #{{ form.id.data }}</h3></div>
+    <div class="card mt-3 clearfix">
+        <div class="card-header">
+            <h3 class="float-left">{{ _('Update user with') }} {{ form.id.label }}: #{{ form.id.data }}</h3>
+            <span class="float-right"><strong>{{ _('Created') }}:</strong>
+                {{ form.created.data | localdatetime }}
+            </span>
+        </div>
         <div class="card-body">
             <form method="post" action="" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
