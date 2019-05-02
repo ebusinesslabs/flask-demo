@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from .validators import UniqueEmail, UniqueUsername
 from flask_babel import lazy_gettext as _l
 
+
 class LoginForm(FlaskForm):
     username = StringField(label=_l('Username'), validators=[DataRequired()])
     password = PasswordField(label=_l('Password'), validators=[DataRequired()])
@@ -19,5 +20,17 @@ class RegisterForm(FlaskForm):
     confirm_password = PasswordField(label=_l('Comfirm Password'), validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField(_l('Register'))
 
+
 class ProfileForm(RegisterForm):
     roles = SelectMultipleField(label=_l('Roles'))
+
+
+class ForgotPasswordForm(FlaskForm):
+    email = StringField(label=_l('Email'), validators=[DataRequired(), Email()])
+    submit = SubmitField(_l('Reset Password'))
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField(label=_l('Password'), validators=[DataRequired(), Length(min=8)])
+    confirm_password = PasswordField(label=_l('Comfirm Password'), validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField(_l('Reset Password'))

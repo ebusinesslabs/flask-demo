@@ -14,7 +14,7 @@ class ProfileForm(FlaskForm):
     username = StringField(label=_l('Username'), validators=[DataRequired(), UniqueUsername()])
     email = StringField(label=_l('Email'), validators=[DataRequired(), Email(), UniqueEmail()])
     password = PasswordField(label=_l('Password'), validators=[Optional(), Length(min=8)])
-    confirm_password = PasswordField(label=_l('Comfirm Password'), validators=[EqualTo('password')])
+    confirm_password = PasswordField(label=_l('Confirm Password'), validators=[EqualTo('password')])
     status = BooleanField(label=_l('Status'))
     image = FileField(label=_l('Image'), validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'jpg or png')])
     roles = QuerySelectMultipleField(_l('Roles'))

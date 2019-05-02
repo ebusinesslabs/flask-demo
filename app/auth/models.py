@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(256))
     status = db.Column(db.Boolean)
     image = db.Column(db.String(256))
+    token = db.Column(db.String(64))
     # Note the lack of parenthesis after datetime.utcnow
     # You need to pass the callable itself not calling the function immediately
     created = db.Column(db.DateTime, default=datetime.utcnow)
