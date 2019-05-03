@@ -1,4 +1,5 @@
 SECRET_KEY='4534gfdgsdft345yhrb'
+SESSION_COOKIE_NAME='flask-demo-session'
 
 LANGUAGES = ['en', 'el']
 BABEL_DEFAULT_LOCALE = 'en'

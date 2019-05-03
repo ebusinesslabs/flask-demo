@@ -65,7 +65,7 @@ def forgot():
         if user is None:
             flash('No such email address in our database.', category='danger')
             return redirect(url_for('auth.forgot'))
-        md5 = hashlib.new('md5', time.asctime() + user.email)
+        md5 = hashlib.new('md5', (time.asctime() + user.email).encode('utf-8'))
         user.token = md5.hexdigest()
         user.save()
         mail = Mail(current_app)
