@@ -43,6 +43,7 @@
                     <span class="nav-link-text">{{ _('Dashboard') }}</span>
                 </a>
             </li>
+            {% if current_user.is_authenticated and current_user.has_role('Administrator') %}
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsers"
                    data-parent="#exampleAccordion">
@@ -58,7 +59,7 @@
                     </li>
                 </ul>
             </li>
-
+            {% endif %}
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">

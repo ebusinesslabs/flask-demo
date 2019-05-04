@@ -11,6 +11,11 @@ def index():
     return render_template('main/index.html')
 
 
+@bp.route('/blank')
+def blank():
+    return render_template('main/blank.html')
+
+
 @bp.route('/dashboard')
 @login_required
 @role_required('Administrator')
@@ -21,8 +26,8 @@ def dashboard():
     #     .all()
 
     # SQLite query
-    records = User.query.with_entities(User.created, func.count())\
-        .group_by(func.date(User.created))\
+    records = User.query.with_entities(User.created, func.count()) \
+        .group_by(func.date(User.created)) \
         .all()
 
     users = []

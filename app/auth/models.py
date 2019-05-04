@@ -35,6 +35,12 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
+    def has_role(self, role):
+        for r in self.roles:
+            if role == r.name:
+                return True
+        return False
+
     def __repr__(self):
         return '<User: {}, {}, {}>'.format(self.username, self.email, self.fullname)
 
