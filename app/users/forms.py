@@ -19,6 +19,7 @@ class ProfileForm(FlaskForm):
     image = FileField(label=_l('Image'), validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'jpg or png')])
     roles = QuerySelectMultipleField(_l('Roles'))
     created = DateTimeField('created')
+    delete = BooleanField(label=_l('Delete'))
     submit = SubmitField(_l('Update'))
 
     def __init__(self, *args, **kwargs):

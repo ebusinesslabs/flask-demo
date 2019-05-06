@@ -72,6 +72,9 @@
                         <label>{{ _('Existing image') }}</label>&nbsp;&nbsp;&nbsp;
                         <div class="form-control">
                             <span class="fa fa-image" aria-hidden="true" data-image-url="{{ form.image.data }}"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            {{ form.delete }}
+                            &nbsp;{{ form.delete.label }}
                         </div>
                     </div>
                 {% endif %}

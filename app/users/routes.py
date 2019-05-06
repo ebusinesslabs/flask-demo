@@ -33,7 +33,12 @@ def update(id):
         user.email = form.email.data
         user.status = form.status.data
         user.roles = form.roles.data
-        user.image = upload_image(form.image.data)
+        if form.delete.data:
+            delete_image(user.image)
+            user.image = None
+        if form.image.data:
+            delete_image(user.image)
+            user.image = upload_image(form.image.data)
         user.save()
         flash(_('User saved successfully.'), category='success')
         return redirect(url_for('users.list'))
@@ -60,10 +65,18 @@ def add():
 
     return render_template('users/add.html', form=form)
 
+
 def upload_image(imagedata):
     if imagedata:
         extension = os.path.splitext(imagedata.filename)[1]
-        unigue_filename = uuid.uuid4().hex + extension
-        imagedata.save(os.path.join(current_app.config['UPLOAD_FOLDER'], unigue_filename))
-        return unigue_filename
+        unique_filename = uuid.uuid4().hex + extension
+        imagedata.save(os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename))
+        return unique_filename
     return None
+
+
+def delete_image(image):
+    if image and os.path.exists(os.path.join(current_app.config['UPLOAD_FOLDER'], image)):
+        os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], image))
+        return True
+    return False
