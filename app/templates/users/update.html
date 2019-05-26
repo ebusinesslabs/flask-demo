@@ -73,8 +73,7 @@
                         <div class="form-control">
                             <span class="fa fa-image" aria-hidden="true" data-image-url="{{ form.image.data }}"></span>
                             &nbsp;&nbsp;&nbsp;
-                            {{ form.delete }}
-                            &nbsp;{{ form.delete.label }}
+                            {{ form.delete }}&nbsp;{{ form.delete.label }}
                         </div>
                     </div>
                 {% endif %}
@@ -109,7 +108,7 @@
                 'html': true,
                 'trigger': 'hover',
                 'content': function() {
-                        return '<img src="{{ url_for('static', filename='images/' ~ form.image.data) }}' + '" style="width:200px;" alt="user image">'
+                        return '<img src="{{ url_for('static', filename='images/users/' ~ form.image.data) }}' + '" style="width:200px;" alt="user image">'
                     }
             });
 

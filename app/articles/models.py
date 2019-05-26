@@ -9,7 +9,7 @@ class Article(db.Model):
     body = db.Column(db.Text)
     image = db.Column(db.String(256))
     status = db.Column(db.Boolean)
-    createat = db.Column(db.DateTime, default=datetime.utcnow)
+    createdat = db.Column(db.DateTime, default=datetime.utcnow)
     createdby = db.Column(db.Integer, db.ForeignKey('user.id'))
     author = db.relationship('User', backref='articles', lazy=True)
 

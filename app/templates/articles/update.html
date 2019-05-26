@@ -1,11 +1,16 @@
 {% extends 'layout/layout.html' %}
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{{ url_for('articles.list') }}">Articles</a></li>
-    <li class="breadcrumb-item active">{{ _('Add article') }}</li>
+    <li class="breadcrumb-item active">{{ _('Update article') }}</li>
 {% endblock %}
 {% block content %}
     <div class="card mt-3">
-        <div class="card-header"><h3>{{ _('Create a new article') }}</h3></div>
+        <div class="card-header">
+            <h3 class="float-left">{{ _('Update article with') }} {{ form.id.label }}: #{{ form.id.data }}</h3>
+            <span class="float-right"><strong>{{ _('Created') }}:</strong>
+                {{ form.createdat.data | localdatetime }}
+            </span>
+        </div>
         <div class="card-body">
             <form method="post" action="" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
@@ -40,6 +45,16 @@
                     {{ form.status.label }}
                     <div>{{ form.status }}</div>
                 </div>
+                {% if form.image.data is not none %}
+                    <div class="form-group">
+                        <label>{{ _('Existing image') }}</label>&nbsp;&nbsp;&nbsp;
+                        <div class="form-control">
+                            <span class="fa fa-image" aria-hidden="true" data-image-url="{{ form.image.data }}"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            {{ form.del_image }}&nbsp;{{ form.del_image.label }}
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="form-group">
                     {{ form.image.label }}
                     {{ form.image(class='form-control', style='height: auto;') }}
@@ -61,12 +76,25 @@
 <script>
     $(document).ready(function () {
         $("#status").bootstrapSwitch();
+
         {% if current_user.has_role('User') %}
             $("#status").bootstrapSwitch('disabled', true);
         {% endif %}
+
         $("#btn-cancel").on("click", function () {
-            window.location.assign("{{ url_for('main.index') }}");
+            window.location.assign("{{ url_for('articles.list') }}");
         });
+
+        $(".fa-image").popover({
+                'container': 'body',
+                'title': 'Photo',
+                'html': true,
+                'trigger': 'hover',
+                'content': function() {
+                        return '<img src="{{ url_for('static', filename='images/articles/' ~ form.image.data) }}' + '" style="width:200px;" alt="user image">'
+                    }
+            });
+
     });
 </script>
 {% endblock %}
