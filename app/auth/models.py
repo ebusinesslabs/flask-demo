@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     roles = db.relationship(
         'Role', secondary=user_role
     )
+    # articles = db.relationship('Article', backref='author', lazy='dynamic')
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

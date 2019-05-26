@@ -1,0 +1,67 @@
+{% extends 'layout/layout.html' %}
+{% from 'macro/pagination.html' import render_pagination %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">{{ _('Articles') }}</li>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ _('List of articles') }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-ssecondary">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{{ _('Title') }}</th>
+                        <th scope="col">{{ _('Slug') }}</th>
+                        <th scope="col">{{ _('Author') }}</th>
+                        <th scope="col" class="text-center">{{ _('Status') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in articles.items %}
+                        <tr>
+                            <th scope="row"><a href="{{ url_for('articles.update', id=article.id) }}">{{ article.id }}</a></th>
+                            <td>{{ article.title }}</td>
+                            <td>{{ article.slug }}</td>
+                            <td>{{ article.author.username }}</td>
+                            <td class="text-center">
+                                {% if article.status %}
+                                    <i class="fa fa-check text-success" title="Active">&nbsp;</i>
+                                {% else %}
+                                    <i class="fa fa-ban text-danger" title="Inactive"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                {{ render_pagination(articles, 'articles.list') }}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block inlinejs %}
+    <script>
+        $(document).ready(function () {
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+            PNotify.success({
+                title: 'Saving article',
+                text: '{{ message }}',
+                styling: 'material',
+            });
+            {% endfor %}
+            {% endwith %}
+        });
+    </script>
+{% endblock %}

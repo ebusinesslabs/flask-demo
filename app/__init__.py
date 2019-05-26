@@ -40,6 +40,10 @@ def create_app():
     app.register_blueprint(users_bp)
     app.register_blueprint(users_bp, url_prefix='/<lang_code>')
 
+    from .articles import bp as articles_bp
+    app.register_blueprint(articles_bp)
+    app.register_blueprint(articles_bp, url_prefix='/<lang_code>')
+
     # logger file handler when DEBUG = False
     if not os.path.exists('logs'):
         os.mkdir('logs')

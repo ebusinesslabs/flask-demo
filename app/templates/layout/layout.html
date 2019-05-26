@@ -60,6 +60,21 @@
                 </ul>
             </li>
             {% endif %}
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseArticles"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-newspaper-o"></i>
+                    <span class="nav-link-text">{{ _('Articles') }}</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseArticles">
+                    <li>
+                        <a href="{{ url_for('articles.list') }}">{{ _('List') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('articles.add') }}">{{ _('Add') }}</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
