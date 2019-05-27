@@ -9,7 +9,8 @@ from sqlalchemy import func
 
 @bp.route('/')
 def index():
-    return render_template('main/index.html')
+    articles = Article.query.filter_by(status=1).all()
+    return render_template('main/index.html', articles=articles)
 
 
 @bp.route('/blank')

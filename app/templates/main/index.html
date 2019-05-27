@@ -1,5 +1,22 @@
 {% extends 'layout/layout.html' %}
 
 {% block content %}
-   <p>Home page</p>
+    {% for row in articles | batch(3) %}
+        <div class="row">
+            {% for article in row %}
+                <div class="col-lg-4">
+                    <div class="card">
+                        {% set filename = url_for('static', filename='images/articles/' ~ article.image) %}
+                        <img src="{{ filename }}" class="card-img-top" alt="article's image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">{{ article.slug }}</p>
+                            <a href="#" class="card-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <p>&nbsp;</p>
+    {% endfor %}
 {% endblock %}
