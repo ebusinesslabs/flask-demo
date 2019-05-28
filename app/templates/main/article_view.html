@@ -1,0 +1,12 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+    <div>
+        {% set filename = url_for('static', filename='images/articles/' ~ article.image) %}
+        <img src="{{ filename }}" class="card-img-top" alt="article's image">
+        <h2>{{ article.title }}</h2>
+        <div>
+            {{ article.slug | safe }} {{ article.body | safe }}
+        </div>
+    </div>
+{% endblock %}

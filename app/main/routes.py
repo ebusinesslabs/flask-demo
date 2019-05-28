@@ -13,6 +13,12 @@ def index():
     return render_template('main/index.html', articles=articles)
 
 
+@bp.route('/view/<int:article_id>')
+def view_article(article_id):
+    article = Article.query.get_or_404(article_id)
+    return render_template('main/article_view.html', article=article)
+
+
 @bp.route('/blank')
 def blank():
     return render_template('main/blank.html')
