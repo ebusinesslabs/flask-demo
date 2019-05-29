@@ -9,7 +9,7 @@ from sqlalchemy import func
 
 @bp.route('/')
 def index():
-    articles = Article.query.filter_by(status=1).all()
+    articles = Article.query.filter_by(status=1).order_by(Article.createdat.desc()).all()
     return render_template('main/index.html', articles=articles)
 
 

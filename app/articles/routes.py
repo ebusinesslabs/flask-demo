@@ -7,6 +7,7 @@ from flask import render_template, request, flash, redirect, url_for, abort, cur
 from flask_babel import _
 import os, uuid
 
+
 @bp.route('/articles')
 @login_required
 @role_required('Administrator', 'Editor', 'User')
