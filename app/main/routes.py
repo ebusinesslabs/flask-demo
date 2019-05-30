@@ -37,11 +37,26 @@ def dashboard():
     records = User.query.with_entities(User.created, func.count()) \
         .group_by(func.date(User.created)) \
         .all()
-
     users = []
-    dates = []
+    users_dates = []
     for record in records:
         users.append(record[1])
-        dates.append(record[0].strftime('%d/%m/%Y'))
-    data = {'users_count': User.query.count(), 'users': users, 'dates': dates, 'articles_count': Article.query.count()}
+        users_dates.append(record[0].strftime('%d/%m/%Y'))
+
+    articles_records = Article.query.with_entities(Article.createdat, func.count()) \
+        .group_by(func.date(Article.createdat)) \
+        .all()
+    articles = []
+    articles_dates = []
+    for record in articles_records:
+        articles.append(record[1])
+        articles_dates.append(record[0].strftime('%d/%m/%Y'))
+    data = {
+        'users_count': User.query.count(),
+        'users': users,
+        'users_dates': users_dates,
+        'articles_count': Article.query.count(),
+        'articles': articles,
+        'articles_dates': articles_dates
+    }
     return render_template('main/dashboard.html', data=data)
