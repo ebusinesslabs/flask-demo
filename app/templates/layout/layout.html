@@ -24,6 +24,8 @@
     <link href="{{ url_for('static', filename='node_modules/pnotify/dist/PNotifyBrightTheme.css') }}" rel="stylesheet">
     <!-- Datatables -->
     <link href="{{ url_for('static', filename='node_modules/datatables/media/css/jquery.dataTables.css') }}" rel="stylesheet">
+    <!-- Summernote -->
+    <link href="{{ url_for('static', filename='node_modules/summernote/dist/summernote-lite.css') }}" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -187,6 +189,9 @@
     <script src="{{ url_for('static', filename='node_modules/datatables/media/js/jquery.dataTables.js') }}"></script>
     <!-- Charts -->
     <script src="{{ url_for('static', filename='node_modules/chart.js/dist/Chart.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ url_for('static', filename='node_modules/summernote/dist/summernote-lite.js') }}"></script>
+
     {% block inlinejs %}{% endblock %}
 </div>
 </body>

@@ -8,6 +8,7 @@
     "jquery": "^3.3.1",
     "jquery-easing": "^0.0.1",
     "pnotify": "^4.0.0-alpha.4",
-    "select2": "^4.0.6-rc.1"
+    "select2": "^4.0.6-rc.1",
+    "summernote": "^0.8.12"
   }
 }
