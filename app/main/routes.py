@@ -1,5 +1,5 @@
 from ..main import bp
-from flask import render_template
+from flask import render_template, request, redirect, url_for, session
 from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User
@@ -60,3 +60,9 @@ def dashboard():
         'articles_dates': articles_dates
     }
     return render_template('main/dashboard.html', data=data)
+
+
+@bp.route('/search', methods=['POST'])
+def search_list():
+    articles = Article.query.filter(Article.body.like('%' + request.form['search'] + '%'))
+    return render_template('main/search_list.html', articles=articles)

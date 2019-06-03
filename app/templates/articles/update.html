@@ -1,6 +1,6 @@
 {% extends 'layout/layout.html' %}
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{{ url_for('articles.list') }}">Articles</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('articles.list_view') }}">Articles</a></li>
     <li class="breadcrumb-item active">{{ _('Update article') }}</li>
 {% endblock %}
 {% block content %}
@@ -82,7 +82,7 @@
         {% endif %}
 
         $("#btn-cancel").on("click", function () {
-            window.location.assign("{{ url_for('articles.list') }}");
+            window.location.assign("{{ url_for('articles.list_view') }}");
         });
 
         $(".fa-image").popover({

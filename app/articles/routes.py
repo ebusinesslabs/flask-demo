@@ -11,7 +11,7 @@ import os, uuid
 @bp.route('/articles')
 @login_required
 @role_required('Administrator', 'Editor', 'User')
-def list():
+def list_view():
     page = request.args.get('page', 1, type=int)
     if current_user.has_role('Administrator') or current_user.has_role('Editor'):
         articles = Article.query.order_by(Article.createdat).paginate(page, 10, False)
@@ -35,7 +35,7 @@ def add():
         article.image = upload_image(form.image.data)
         article.save()
         flash(_('Article saved successfully.'), category='success')
-        return redirect(url_for('articles.list'))
+        return redirect(url_for('articles.list_view'))
     return render_template('articles/add.html', form=form)
 
 
@@ -60,7 +60,7 @@ def update(id):
             article.image = upload_image(form.image.data)
         article.save()
         flash(_('Article saved successfully.'), category='success')
-        return redirect(url_for('articles.list'))
+        return redirect(url_for('articles.list_view'))
     return render_template('articles/update.html', form=form)
 
 
@@ -71,6 +71,7 @@ def upload_image(imagedata):
         imagedata.save(os.path.join(current_app.config['ARTICLES_UPLOAD_FOLDER'], unique_filename))
         return unique_filename
     return None
+
 
 def delete_image(image):
     if image and os.path.exists(os.path.join(current_app.config['ARTICLES_UPLOAD_FOLDER'], image)):
