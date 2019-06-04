@@ -1,6 +1,6 @@
 {% extends 'layout/layout.html' %}
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{{ url_for('articles.list') }}">Articles</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('articles.list_view') }}">Articles</a></li>
     <li class="breadcrumb-item active">{{ _('Add article') }}</li>
 {% endblock %}
 {% block content %}
