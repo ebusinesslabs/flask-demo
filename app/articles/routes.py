@@ -45,7 +45,8 @@ def add():
 def update(id):
     article = Article.query.get(id)
     form = UpdateForm(obj=article)
-    if not (current_user.has_role('Administrator') or current_user.has_role('Editor')) and current_user.id != article.createdby:
+    if not (current_user.has_role('Administrator') or current_user.has_role(
+            'Editor')) and current_user.id != article.createdby:
         abort(403)
     if form.validate_on_submit():
         article.title = form.title.data
@@ -71,6 +72,18 @@ def upload_image(imagedata):
         imagedata.save(os.path.join(current_app.config['ARTICLES_UPLOAD_FOLDER'], unique_filename))
         return unique_filename
     return None
+
+
+@bp.route('/article/<int:article_id>/delete', methods=['POST'])
+@login_required
+@role_required('Administrator', 'Editor', 'User')
+def delete(article_id):
+    article = Article.query.get_or_404(article_id)
+    if not (current_user.has_role('Administrator') or current_user.has_role(
+            'Editor')) and current_user.id != article.createdby:
+        abort(403)
+    article.delete()
+    return redirect(url_for('articles.list_view'))
 
 
 def delete_image(image):
