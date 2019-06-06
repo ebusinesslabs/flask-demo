@@ -18,7 +18,8 @@
                         <th scope="col">{{ _('Slug') }}</th>
                         <th scope="col">{{ _('Author') }}</th>
                         <th scope="col" class="text-center">{{ _('Status') }}</th>
-                        <th scope="col" class="text-center">{{ _('Action') }}</th>
+                        <th scope="col" class="text-center">{{ _('Delete') }}</th>
+                        <th scope="col" class="text-center">{{ _('Edit') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,8 +38,8 @@
                             </td>
                             <td class="text-center">
                                 <form method="post" action="{{ url_for('articles.delete', article_id=article.id) }}">
-                                    <button type="button" class="text-danger" data-toggle="modal" data-target="#confirm-{{ article.id }}">
-                                        <i class="fa fa-trash-o fa-lg" title="{{ _('Delete article') }}"></i>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-{{ article.id }}">
+                                        <i class="fa fa-trash-o" title="{{ _('Delete article') }}"></i>
                                     </button>
                                     <div class="modal" id="confirm-{{ article.id }}">
                                         <div class="modal-dialog">
@@ -63,6 +64,10 @@
                                         </div>
                                     </div>
                                 </form>
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ url_for('articles.update', id=article.id) }}" class="btn btn-info" title="{{ _('Edit article') }}">
+                                    <i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
