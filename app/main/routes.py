@@ -38,7 +38,7 @@ def dashboard():
         .all()
     # convert [(u'dvossos', 7), (u'user1', 1), (u'user3', 2), (u'user4', 1), (u'editor1', 1)]
     # to [(u'dvossos', u'user1', u'user3', u'user4', u'editor1'), (7, 1, 2, 1, 1)]
-    articles_per_user = zip(*list_articles_per_user)
+    articles_per_user = list(zip(*list_articles_per_user))
 
     articles_records = Article.query.with_entities(Article.createdat, func.count()) \
         .group_by(func.date(Article.createdat)) \
