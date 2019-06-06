@@ -1,5 +1,5 @@
 from ..main import bp
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, abort, jsonify
 from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User
@@ -33,15 +33,12 @@ def dashboard():
     #     .group_by(func.date(User.created))\
     #     .all()
 
-    # SQLite query
-    records = User.query.with_entities(User.created, func.count()) \
-        .group_by(func.date(User.created)) \
+    list_articles_per_user = Article.query.join(User).with_entities(User.username, func.count()) \
+        .group_by(Article.createdby) \
         .all()
-    users = []
-    users_dates = []
-    for record in records:
-        users.append(record[1])
-        users_dates.append(record[0].strftime('%d/%m/%Y'))
+    # convert [(u'dvossos', 7), (u'user1', 1), (u'user3', 2), (u'user4', 1), (u'editor1', 1)]
+    # to [(u'dvossos', u'user1', u'user3', u'user4', u'editor1'), (7, 1, 2, 1, 1)]
+    articles_per_user = zip(*list_articles_per_user)
 
     articles_records = Article.query.with_entities(Article.createdat, func.count()) \
         .group_by(func.date(Article.createdat)) \
@@ -53,11 +50,10 @@ def dashboard():
         articles_dates.append(record[0].strftime('%d/%m/%Y'))
     data = {
         'users_count': User.query.count(),
-        'users': users,
-        'users_dates': users_dates,
         'articles_count': Article.query.count(),
         'articles': articles,
-        'articles_dates': articles_dates
+        'articles_dates': articles_dates,
+        'articles_per_user': articles_per_user
     }
     return render_template('main/dashboard.html', data=data)
 
