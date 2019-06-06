@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-06 19:44+0300\n"
-"PO-Revision-Date: 2019-05-06 19:45+0300\n"
+"POT-Creation-Date: 2019-06-06 20:17+0300\n"
+"PO-Revision-Date: 2019-06-06 20:24+0300\n"
 "Last-Translator: \n"
 "Language-Team: el <LL@li.org>\n"
 "Language: el\n"
@@ -18,6 +18,44 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.6.0\n"
 "X-Generator: Poedit 2.2.1\n"
+
+#: app/articles/forms.py:9 app/templates/articles/list.html:17
+msgid "Title"
+msgstr "Τίτλος"
+
+#: app/articles/forms.py:10 app/templates/articles/list.html:18
+msgid "Slug"
+msgstr "Προοίμιο"
+
+#: app/articles/forms.py:11
+msgid "Body"
+msgstr "Κείμενο"
+
+#: app/articles/forms.py:12 app/templates/articles/list.html:20
+#: app/templates/users/list.html:20 app/users/forms.py:18
+msgid "Status"
+msgstr "Κατάσταση"
+
+#: app/articles/forms.py:13 app/users/forms.py:19
+msgid "Image"
+msgstr "Εικόνα"
+
+#: app/articles/forms.py:14
+msgid "Submit"
+msgstr "Υποβολή"
+
+#: app/articles/forms.py:19
+msgid "Created at"
+msgstr "Δημιουργήθηκε την"
+
+#: app/articles/forms.py:20 app/templates/articles/list.html:21
+#: app/users/forms.py:22
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: app/articles/routes.py:37 app/articles/routes.py:63
+msgid "Article saved successfully."
+msgstr "Το άρθρο αποθηκεύτηκε επιτυχώς."
 
 #: app/auth/forms.py:9 app/auth/forms.py:18 app/templates/users/list.html:18
 #: app/users/forms.py:14
@@ -59,6 +97,72 @@ msgstr "Ρόλοι"
 msgid "Reset Password"
 msgstr "Αλλαγή συνθηματικού"
 
+#: app/templates/articles/add.html:4
+msgid "Add article"
+msgstr "Προσθήκη άρθρου"
+
+#: app/templates/articles/add.html:8
+msgid "Create a new article"
+msgstr "Δημιουργία νέου άρθρου"
+
+#: app/templates/articles/add.html:56 app/templates/articles/update.html:66
+#: app/templates/layout/layout.html:167 app/templates/users/add.html:73
+#: app/templates/users/update.html:88
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: app/templates/articles/list.html:4 app/templates/layout/layout.html:70
+msgid "Articles"
+msgstr "Άρθρα"
+
+#: app/templates/articles/list.html:9
+msgid "List of articles"
+msgstr "Λίστα άρθρων"
+
+#: app/templates/articles/list.html:19
+msgid "Author"
+msgstr "Συγγραφέας"
+
+#: app/templates/articles/list.html:22
+msgid "Edit"
+msgstr "Τροποποίηση"
+
+#: app/templates/articles/list.html:42 app/templates/articles/list.html:48
+msgid "Delete article"
+msgstr "Διαγραφή άρθρου"
+
+#: app/templates/articles/list.html:52
+msgid "Please confirm the deletion of article"
+msgstr "Παρακαλώ επιβεβαιώστε την διαγραφή του άρθρου"
+
+#: app/templates/articles/list.html:57
+msgid "No"
+msgstr "Όχι"
+
+#: app/templates/articles/list.html:60
+msgid "Yes"
+msgstr "Ναι"
+
+#: app/templates/articles/list.html:69
+msgid "Edit article"
+msgstr "Τροποποίηση άρθρου"
+
+#: app/templates/articles/update.html:4
+msgid "Update article"
+msgstr "Ενημέρωση άρθρου"
+
+#: app/templates/articles/update.html:9
+msgid "Update article with"
+msgstr "Ενημέρωση άρθρου με"
+
+#: app/templates/articles/update.html:10 app/templates/users/update.html:10
+msgid "Created"
+msgstr "Δημιουργήθηκε"
+
+#: app/templates/articles/update.html:50 app/templates/users/update.html:72
+msgid "Existing image"
+msgstr "Τρέχουσα εικόνα"
+
 #: app/templates/auth/forgot.html:15
 msgid "Enter email address"
 msgstr "Εισήγαγε ηλεκτρονική διεύθυνση"
@@ -68,7 +172,7 @@ msgid "Register an Account"
 msgstr "Εγγραφή λογαριασμού"
 
 #: app/templates/auth/login.html:5 app/templates/auth/reset.html:34
-#: app/templates/layout/layout.html:87
+#: app/templates/layout/layout.html:106
 msgid "Login"
 msgstr "Σύνδεση"
 
@@ -84,43 +188,38 @@ msgstr "Σελίδα σύνδεσης"
 msgid "Home page"
 msgstr "Αρχική σελίδα"
 
-#: app/templates/layout/layout.html:43
+#: app/templates/layout/layout.html:46
 msgid "Dashboard"
 msgstr "Πίνακας ελέγχου"
 
-#: app/templates/layout/layout.html:51 app/templates/users/list.html:4
+#: app/templates/layout/layout.html:54 app/templates/users/list.html:4
 msgid "Users"
 msgstr "Χρήστες"
 
-#: app/templates/layout/layout.html:55 app/templates/main/dashboard.html:22
-#: app/templates/main/dashboard.html:41
+#: app/templates/layout/layout.html:58 app/templates/layout/layout.html:74
+#: app/templates/main/dashboard.html:22 app/templates/main/dashboard.html:41
 msgid "List"
 msgstr "Λίστα"
 
-#: app/templates/layout/layout.html:58
+#: app/templates/layout/layout.html:61 app/templates/layout/layout.html:77
 msgid "Add"
 msgstr "Προσθήκη"
 
-#: app/templates/layout/layout.html:92 app/templates/layout/layout.html:149
+#: app/templates/layout/layout.html:111 app/templates/layout/layout.html:168
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: app/templates/layout/layout.html:112
+#: app/templates/layout/layout.html:131
 msgid "Home"
 msgstr "Αρχή"
 
-#: app/templates/layout/layout.html:141
+#: app/templates/layout/layout.html:160
 msgid "Ready to Leave?"
 msgstr "Θέλεις να αποσυνδεθείς;"
 
-#: app/templates/layout/layout.html:146
+#: app/templates/layout/layout.html:165
 msgid "Select \"Logout\" below if you are ready to end your current session."
 msgstr "Επίλεξε “Αποσύνδεση” αν επιθυμείς να τερματίσεις την τρέχουσα συνεδρία."
-
-#: app/templates/layout/layout.html:148 app/templates/users/add.html:73
-#: app/templates/users/update.html:89
-msgid "Cancel"
-msgstr "Ακύρωση"
 
 #: app/templates/main/dashboard.html:4
 msgid "Dashbord"
@@ -133,6 +232,14 @@ msgstr "χρήστες"
 #: app/templates/main/dashboard.html:37
 msgid "news"
 msgstr "ειδήσεις"
+
+#: app/templates/main/dashboard.html:53
+msgid "Articles per User"
+msgstr "Άρθρα ανά χρήστη"
+
+#: app/templates/main/dashboard.html:63
+msgid "Articles per day"
+msgstr "Άρθρα ανά ημέρα"
 
 #: app/templates/users/add.html:4
 msgid "Add user"
@@ -155,10 +262,6 @@ msgstr "Λίστα χρηστών"
 msgid "Full name"
 msgstr "Ονοματεπώνυμο"
 
-#: app/templates/users/list.html:20 app/users/forms.py:18
-msgid "Status"
-msgstr "Κατάσταση"
-
 #: app/templates/users/update.html:4
 msgid "Update user"
 msgstr "Τροποποίηση χρήστη"
@@ -167,25 +270,9 @@ msgstr "Τροποποίηση χρήστη"
 msgid "Update user with"
 msgstr "Τροποποίηση του χρήστη με"
 
-#: app/templates/users/update.html:10
-msgid "Created"
-msgstr "Δημιουργήθηκε"
-
-#: app/templates/users/update.html:72
-msgid "Existing image"
-msgstr "Τρέχουσα εικόνα"
-
 #: app/users/forms.py:17
 msgid "Confirm Password"
 msgstr "Επιβεβαίωση συνθηματικού"
-
-#: app/users/forms.py:19
-msgid "Image"
-msgstr "Εικόνα"
-
-#: app/users/forms.py:22
-msgid "Delete"
-msgstr "Διαγραφή"
 
 #: app/users/forms.py:23
 msgid "Update"

@@ -9,9 +9,13 @@
                         {% set filename = url_for('static', filename='images/articles/' ~ article.image | default('no-image.jpg', true)) %}
                         <img src="{{ filename }}" class="card-img-top" alt="article's image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ article.title }}</h5>
+                            <h5 class="card-title">
+                                <a href="{{ url_for('main.view_article', article_id=article.id) }}" class="card-link">
+
+                                    {{ article.title }}
+                                </a>
+                            </h5>
                             <p class="card-text">{{ article.slug | safe }}</p>
-                            <a href="{{ url_for('main.view_article', article_id=article.id) }}" class="card-link">View</a>
                         </div>
                     </div>
                 </div>
