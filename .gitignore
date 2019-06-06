@@ -10,3 +10,4 @@ app/static/images/users/*
 !app/static/images/users/readme.txt
 app/static/images/articles/*
 !app/static/images/articles/readme.txt
+!app/static/images/articles/no-image.jpg

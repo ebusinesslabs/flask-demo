@@ -6,7 +6,7 @@
             {% for article in row %}
                 <div class="col-lg-4">
                     <div class="card">
-                        {% set filename = url_for('static', filename='images/articles/' ~ article.image) %}
+                        {% set filename = url_for('static', filename='images/articles/' ~ article.image | default('no-image.jpg', true)) %}
                         <img src="{{ filename }}" class="card-img-top" alt="article's image">
                         <div class="card-body">
                             <h5 class="card-title">{{ article.title }}</h5>
