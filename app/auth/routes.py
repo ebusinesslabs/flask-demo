@@ -69,7 +69,7 @@ def forgot():
         user.token = md5.hexdigest()
         user.save()
         mail = Mail(current_app)
-        message = Message('Reset password', sender='dvossos@example.com', recipients=[user.email])
+        message = Message('[Flask Demo] - Reset password', sender='dvossos@example.com', recipients=[user.email])
         # message.body = 'Please follow link to reset password.\n' \
         #                + request.host_url \
         #                + 'reset' \
@@ -77,8 +77,11 @@ def forgot():
         #                + '&token=' + md5.hexdigest()
         message.body = 'Please follow the link to reset your password\n' \
                        + url_for('auth.reset', _external=True, email=user.email, token=md5.hexdigest())
-        mail.send(message)
-        flash('Check your email', category='success')
+        try:
+            mail.send(message)
+            flash('Check your email', category='success')
+        except Exception as exception:
+            flash('Unable to send mail, ' + exception.args[1], category='danger')
     return render_template('auth/forgot.html', form=forgot_form)
 
 
