@@ -18,6 +18,7 @@
                         <th scope="col">{{ _('Username') }}</th>
                         <th scope="col">{{ _('Email') }}</th>
                         <th scope="col" class="text-center">{{ _('Status') }}</th>
+                        <th scope="col" class="text-center">{{ _('Edit') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,10 @@
                                 {% else %}
                                     <i class="fa fa-ban text-danger" title="Inactive"></i>
                                 {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ url_for('users.update', id=user.id) }}" class="btn btn-info" title="{{ _('Edit user') }}">
+                                    <i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

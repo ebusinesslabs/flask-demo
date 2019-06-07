@@ -26,7 +26,6 @@ def blank():
 
 @bp.route('/dashboard')
 @login_required
-@role_required('Administrator')
 def dashboard():
     # MySQL query
     # records = User.query.with_entities(func.date(User.created), func.count())\
