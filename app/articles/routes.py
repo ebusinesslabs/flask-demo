@@ -83,6 +83,7 @@ def delete(article_id):
             'Editor')) and current_user.id != article.createdby:
         abort(403)
     article.delete()
+    delete_image(article.image)
     return redirect(url_for('articles.list_view'))
 
 
