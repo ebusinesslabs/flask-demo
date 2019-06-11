@@ -13,8 +13,15 @@ import uuid
 @login_required
 @role_required('Administrator')
 def list():
+    query_user = User.query
+    if request.args:
+        for parameter in request.args.items():
+            if parameter[0] == 'email':
+                query_user = query_user.filter(User.email.like('%' + parameter[1] + '%'))
+            elif parameter[0] == 'role':
+                query_user = query_user.join('roles').filter(Role.id == parameter[1])
     page = request.args.get('page', 1, type=int)
-    users = User.query.order_by(User.id).paginate(page, 10, False)
+    users = query_user.order_by(User.id).paginate(page, 10, False)
     return render_template('users/list.html', users=users)
 
 

@@ -4,6 +4,33 @@
     <li class="breadcrumb-item active">{{ _('Users') }}</li>
 {% endblock %}
 {% block content %}
+    <div style="margin-bottom: 10px;">
+        <a href="#search-filters" class="btn btn-secondary float-right ml-1" data-toggle="collapse" role="button" >
+                {{ _('Filters') }}
+        </a>
+        <div class="clearfix"></div>
+        <div class="collapse" id="search-filters">
+            <form method="get">
+                <div class="form-group">
+                    <label for="email">{{ _('Email') }}</label>
+                    <input type="text" name="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="role">{{ _('Role') }}</label>
+                    <select class="form-control" name="role" id="role">
+                        <option value="0"></option>
+                        <option value="1">Administrator</option>
+                        <option value="2">Editor</option>
+                        <option value="3">User</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success float-right ml-1">{{ _('Search') }}</button>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <h3>{{ _('List of users') }}</h3>
@@ -67,6 +94,10 @@
             });
             {% endfor %}
             {% endwith %}
+
+            $("#role").select2({
+                width: '100%'
+            });
         });
     </script>
 {% endblock %}
