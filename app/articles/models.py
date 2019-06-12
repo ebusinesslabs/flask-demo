@@ -10,8 +10,8 @@ class Article(db.Model):
     image = db.Column(db.String(256))
     status = db.Column(db.Boolean)
     createdat = db.Column(db.DateTime, default=datetime.utcnow)
-    createdby = db.Column(db.Integer, db.ForeignKey('user.id'))
-    author = db.relationship('User', backref='articles', lazy=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
+    #author = db.relationship('User', backref='articles', lazy=True, passive_deletes=True)
 
     def save(self):
         db.session.add(self)

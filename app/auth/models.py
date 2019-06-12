@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 user_role = db.Table('user_role',
-                     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+                     db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE')),
                      db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
                      )
 
@@ -20,11 +20,11 @@ class User(db.Model, UserMixin):
     token = db.Column(db.String(64))
     # Note the lack of parenthesis after datetime.utcnow
     # You need to pass the callable itself not calling the function immediately
-    created = db.Column(db.DateTime, default=datetime.utcnow)
+    createdat = db.Column(db.DateTime, default=datetime.utcnow)
     roles = db.relationship(
         'Role', secondary=user_role
     )
-    # articles = db.relationship('Article', backref='author', lazy='dynamic')
+    articles = db.relationship('Article', backref='author', lazy=True, passive_deletes=True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

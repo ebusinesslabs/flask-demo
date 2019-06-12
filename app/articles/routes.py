@@ -16,7 +16,7 @@ def list_view():
     if current_user.has_role('Administrator') or current_user.has_role('Editor'):
         articles = Article.query.order_by(Article.createdat).paginate(page, 10, False)
     else:
-        articles = Article.query.filter_by(createdby=current_user.id).paginate(page, 10, False)
+        articles = Article.query.filter_by(user_id=current_user.id).paginate(page, 10, False)
     return render_template('articles/list.html', articles=articles)
 
 
@@ -31,7 +31,7 @@ def add():
         article.slug = form.slug.data
         article.body = form.body.data
         article.status = form.status.data
-        article.createdby = current_user.id
+        article.user_id = current_user.id
         article.image = upload_image(form.image.data)
         article.save()
         flash(_('Article saved successfully.'), category='success')
@@ -46,7 +46,7 @@ def update(id):
     article = Article.query.get(id)
     form = UpdateForm(obj=article)
     if not (current_user.has_role('Administrator') or current_user.has_role(
-            'Editor')) and current_user.id != article.createdby:
+            'Editor')) and current_user.id != article.user_id:
         abort(403)
     if form.validate_on_submit():
         article.title = form.title.data

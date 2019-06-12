@@ -18,7 +18,7 @@ class ProfileForm(FlaskForm):
     status = BooleanField(label=_l('Status'))
     image = FileField(label=_l('Image'), validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'jpg or png')])
     roles = QuerySelectMultipleField(_l('Roles'))
-    created = DateTimeField('created')
+    createdat = DateTimeField('createdat')
     delete = BooleanField(label=_l('Delete'))
     submit = SubmitField(_l('Update'))
 
