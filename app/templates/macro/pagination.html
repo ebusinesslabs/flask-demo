@@ -1,15 +1,20 @@
-{% macro render_pagination(pagination, endpoint) %}
+{% macro render_pagination(pagination, endpoint, query_string) %}
     <ul class="pagination justify-content-center">
         {%- for page in pagination.iter_pages() %}
             {% if page %}
                 {% if page != pagination.page %}
-                    <li class="page-item"><a class="page-link" href="{{ url_for(endpoint, page=page) }}">{{ page }}</a>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for(endpoint, page=page) }}{{ '&' ~ query_string if query_string }}">{{ page }}</a>
                     </li>
                 {% else %}
-                    <li class="page-item disabled"><a class="page-link">{{ page }}</a></li>
+                    <li class="page-item disabled">
+                        <a class="page-link">{{ page }}</a>
+                    </li>
                 {% endif %}
             {% else %}
-                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">...</a>
+                </li>
             {% endif %}
         {%- endfor %}
     </ul>

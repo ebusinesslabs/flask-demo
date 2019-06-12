@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import StringField, SubmitField, HiddenField, PasswordField, BooleanField, FileField, DateTimeField
-from wtforms.ext.sqlalchemy.fields import QuerySelectMultipleField
+from wtforms.ext.sqlalchemy.fields import QuerySelectMultipleField, QuerySelectField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
 from .validators import UniqueUsername, UniqueEmail
 from ..auth.models import Role
@@ -30,3 +30,13 @@ class ProfileForm(FlaskForm):
 class AddUserForm(ProfileForm):
     password = PasswordField(label=_l('Password'), validators=[Length(min=8)])
     submit = SubmitField(_l('Save'))
+
+
+class SearchUserForm(FlaskForm):
+    fullname = StringField(label=_l('Full name'))
+    email = StringField(label=_l('Email'))
+    role = QuerySelectField(label=_l('Role'), allow_blank=True, blank_text='')
+
+    def __init__(self, *args, **kwargs):
+        FlaskForm.__init__(self, **kwargs)
+        self.role.query = Role.query.all()

@@ -3,26 +3,42 @@ from . import bp
 from flask_login import login_required
 from ..auth.decorators import role_required
 from ..auth.models import User, Role
-from .forms import ProfileForm, AddUserForm
+from .forms import ProfileForm, AddUserForm, SearchUserForm
 from flask_babel import _
 import os
 import uuid
+import re
 
 
 @bp.route('/users')
 @login_required
 @role_required('Administrator')
 def list():
+    # make search form and populate previous search criteria
+    form = SearchUserForm(data=request.args.items())
+    # because 'role' QuerySelectField has been populated with objects of type <Role>
+    # it won't be selected just with the id from query string (previous search criteria)
+    # We get object Role from id
+    if request.args.get('role'):
+        role = Role.query.get(request.args.get('role'))
+        form.role.data = role
+
+    # parse filters and select User records
     query_user = User.query
     if request.args:
         for parameter in request.args.items():
-            if parameter[0] == 'email':
+            if parameter[0] == 'email' and parameter[1]:
                 query_user = query_user.filter(User.email.like('%' + parameter[1] + '%'))
-            elif parameter[0] == 'role':
+            elif parameter[0] == 'fullname' and parameter[1]:
+                query_user = query_user.filter(User.fullname.like('%' + parameter[1] + '%'))
+            elif parameter[0] == 'role' and parameter[1] != '__None':
                 query_user = query_user.join('roles').filter(Role.id == parameter[1])
     page = request.args.get('page', 1, type=int)
     users = query_user.order_by(User.id).paginate(page, 10, False)
-    return render_template('users/list.html', users=users)
+
+    # pass search filter in pagination
+    query_string = re.sub('page=\d*&*', '', request.query_string)
+    return render_template('users/list.html', users=users, query_string=query_string, form=form)
 
 
 @bp.route('/user/<int:id>', methods=['GET', 'POST'])

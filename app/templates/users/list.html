@@ -12,20 +12,20 @@
         <div class="collapse" id="search-filters">
             <form method="get">
                 <div class="form-group">
-                    <label for="email">{{ _('Email') }}</label>
-                    <input type="text" name="email" id="email" class="form-control">
+                    {{ form.fullname.label }}
+                    {{ form.fullname(class='form-control') }}
                 </div>
                 <div class="form-group">
-                    <label for="role">{{ _('Role') }}</label>
-                    <select class="form-control" name="role" id="role">
-                        <option value="0"></option>
-                        <option value="1">Administrator</option>
-                        <option value="2">Editor</option>
-                        <option value="3">User</option>
-                    </select>
+                    {{ form.email.label }}
+                    {{ form.email(class='form-control') }}
+                </div>
+                <div class="form-group">
+                    {{ form.role.label }}
+                    {{ form.role(class='form-control') }}
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success float-right ml-1">{{ _('Search') }}</button>
+                    <a href="{{ url_for('users.list') }}" class="btn btn-light float-right ml-1">{{ _('Reset') }}</a>
                     <div class="clearfix"></div>
                 </div>
             </form>
@@ -72,7 +72,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="5">
-                                {{ render_pagination(users, 'users.list') }}
+                                {{ render_pagination(users, 'users.list', query_string) }}
                             </td>
                         </tr>
                     </tfoot>
