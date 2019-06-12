@@ -37,7 +37,7 @@ def list():
     users = query_user.order_by(User.id).paginate(page, 10, False)
 
     # pass search filter in pagination
-    query_string = re.sub('page=\d*&*', '', request.query_string)
+    query_string = re.sub('page=\d*&*', '', request.query_string.decode('utf-8'))
     return render_template('users/list.html', users=users, query_string=query_string, form=form)
 
 
