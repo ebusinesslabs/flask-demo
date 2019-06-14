@@ -2,7 +2,7 @@ from app import create_app, db
 from app.auth.models import User, Role
 from app.articles.models import Article
 from flask import g
-import pytz
+import pytz, flask
 
 app = create_app()
 
@@ -36,3 +36,8 @@ def localdatetime(value):
     value = utc.localize(value, is_dst=None).astimezone(pytz.utc)
     local_dt = value.astimezone(tz)
     return local_dt.strftime('%d/%m/%Y %H:%M:%S')
+
+
+@app.template_global()
+def flask_version():
+    return flask.__version__

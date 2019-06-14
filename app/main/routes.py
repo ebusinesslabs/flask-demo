@@ -1,10 +1,10 @@
-from ..main import bp
-from flask import render_template, request, redirect, url_for, session, abort, jsonify
+from flask import render_template, request
 from flask_login import login_required
-from ..auth.decorators import role_required
-from ..auth.models import User
-from ..articles.models import Article
 from sqlalchemy import func
+
+from ..articles.models import Article
+from ..auth.models import User
+from ..main import bp
 
 
 @bp.route('/')
