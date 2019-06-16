@@ -3,8 +3,9 @@
 {% block content %}
     <div>
         {% set filename = url_for('static', filename='images/articles/' ~ article.image | default('no-image.jpg', true)) %}
-        <img src="{{ filename }}" class="card-img-top" alt="article's image" class="img-fluid">
-        <p><h2>{{ article.title }}</h2></p>
+        <img src="{{ filename }}" class="img-thumbnail mx-auto d-block" alt="article's image" class="img-fluid">
+        <p></p>
+        <h2>{{ article.title }}</h2>
         <div>
             <p>{{ article.author.fullname }} - {{ article.createdat | localdatetime }}</p>
         </div>
