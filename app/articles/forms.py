@@ -1,8 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, FileField, TextAreaField, HiddenField, DateTimeField
+from wtforms import (
+    StringField, SubmitField, BooleanField, FileField, TextAreaField, HiddenField, DateTimeField
+)
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import Length
 from flask_wtf.file import FileAllowed
 from flask_babel import lazy_gettext as _l
+from ..auth.models import User
 
 
 class AddForm(FlaskForm):
@@ -18,3 +22,12 @@ class UpdateForm(AddForm):
     id = HiddenField(label='id')
     createdat = DateTimeField(label=_l('Created at'))
     del_image = BooleanField(label=_l('Delete'))
+
+
+class SearchForm(FlaskForm):
+    title = StringField(label='Title', validators=[Length(min=4, max=128)])
+    author = QuerySelectField(label=_l('Author'), allow_blank=True, blank_text='')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
+        self.author.query = User.query.all()

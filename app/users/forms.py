@@ -23,7 +23,7 @@ class ProfileForm(FlaskForm):
     submit = SubmitField(_l('Update'))
 
     def __init__(self, *args, **kwargs):
-        FlaskForm.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.roles.query = Role.query.all()
 
 
@@ -38,5 +38,5 @@ class SearchUserForm(FlaskForm):
     role = QuerySelectField(label=_l('Role'), allow_blank=True, blank_text='')
 
     def __init__(self, *args, **kwargs):
-        FlaskForm.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.role.query = Role.query.all()

@@ -4,6 +4,31 @@
     <li class="breadcrumb-item active">{{ _('Articles') }}</li>
 {% endblock %}
 {% block content %}
+    <div style="margin-bottom: 10px;">
+        <a href="#search-filters" class="btn btn-secondary float-right ml-1" data-toggle="collapse" role="button" >
+                {{ _('Filters') }}
+        </a>
+        <div class="clearfix"></div>
+        <div class="collapse" id="search-filters">
+            <form method="get">
+                <div class="form-group">
+                    {{ form.title.label }}
+                    {{ form.title(class='form-control') }}
+                </div>
+                {% if current_user.has_role('Administrator') or current_user.has_role('Editor') %}
+                <div class="form-group">
+                    {{ form.author.label }}
+                    {{ form.author(class='form-control') }}
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success float-right ml-1">{{ _('Search') }}</button>
+                    <a href="{{ url_for('articles.list_view') }}" class="btn btn-light float-right ml-1">{{ _('Reset') }}</a>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <h3>{{ _('List of articles') }}</h3>
@@ -88,6 +113,10 @@
 {% block inlinejs %}
     <script>
         $(document).ready(function () {
+            $("#author").select2({
+                width: '100%'
+            });
+
             {% with messages = get_flashed_messages() %}
             {% for message in messages %}
             PNotify.success({

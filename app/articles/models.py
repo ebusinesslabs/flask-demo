@@ -11,7 +11,6 @@ class Article(db.Model):
     status = db.Column(db.Boolean)
     createdat = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
-    #author = db.relationship('User', backref='articles', lazy=True, passive_deletes=True)
 
     def save(self):
         db.session.add(self)

@@ -14,7 +14,7 @@ import re
 @login_required
 @role_required('Administrator')
 def list():
-    # make search form and populate previous search criteria
+    # define search form and populate previous search criteria
     form = SearchUserForm(data=request.args.items())
     # because 'role' QuerySelectField has been populated with objects of type <Role>
     # it won't be selected just with the id from query string (previous search criteria)

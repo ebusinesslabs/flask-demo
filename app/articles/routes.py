@@ -1,23 +1,42 @@
 from .models import Article
-from .forms import AddForm, UpdateForm
+from .forms import AddForm, UpdateForm, SearchForm
 from flask_login import current_user, login_required
 from ..auth.decorators import role_required
 from . import bp
 from flask import render_template, request, flash, redirect, url_for, abort, current_app
 from flask_babel import _
-import os, uuid
+import os, uuid, re
+from ..auth.models import User
 
 
 @bp.route('/articles')
 @login_required
 @role_required('Administrator', 'Editor', 'User')
 def list_view():
+    # define search form and populate previous search criteria
+    form = SearchForm(data=request.args.items())
+    # because 'author' QuerySelectField has been populated with objects of type <User>
+    # it won't be selected just with the id from query string (previous search criteria)
+    # We get object User from id
+    if request.args.get('author'):
+        author = User.query.get(request.args.get('author'))
+        form.author.data = author
+
+    query_article = Article.query
+    if request.args:
+        for parameter in request.args.items():
+            if parameter[0] == 'title' and parameter[1]:
+                query_article = query_article.filter(Article.title.like('%' + parameter[1] + '%'))
+            elif parameter[0] == 'author' and parameter[1] != '__None':
+                query_article = query_article.join('author').filter(User.id == parameter[1])
     page = request.args.get('page', 1, type=int)
     if current_user.has_role('Administrator') or current_user.has_role('Editor'):
-        articles = Article.query.order_by(Article.createdat).paginate(page, 10, False)
+        articles = query_article.order_by(Article.createdat).paginate(page, 10, False)
     else:
-        articles = Article.query.filter_by(user_id=current_user.id).paginate(page, 10, False)
-    return render_template('articles/list.html', articles=articles)
+        articles = query_article.filter_by(user_id=current_user.id).paginate(page, 10, False)
+    # pass search filter in pagination
+    query_string = re.sub('page=\d*&*', '', request.query_string.decode('utf-8'))
+    return render_template('articles/list.html', articles=articles, form=form, query_string=query_string)
 
 
 @bp.route('/article/add', methods=['GET', 'POST'])
