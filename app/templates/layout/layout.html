@@ -50,21 +50,39 @@
                 </a>
             </li>
             {% if current_user.has_role('Administrator') %}
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsers"
-                   data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-users"></i>
-                    <span class="nav-link-text">{{ _('Users') }}</span>
-                </a>
-                <ul class="sidenav-second-level collapse" id="collapseUsers">
-                    <li>
-                        <a href="{{ url_for('users.list') }}">{{ _('List') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('users.add') }}">{{ _('Add') }}</a>
-                    </li>
-                </ul>
-            </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settins">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSettings"
+                       data-parent="#exampleAccordion">
+                        <i class="fa fa-cog"></i>
+                        <span class="nav-link-text">{{ _('Settings') }}</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseSettings">
+                        <li>
+                            <a href="#">{{ _('General') }}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{ _('SMTP') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('main.sysinfo') }}">{{ _('Information') }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsers"
+                       data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-users"></i>
+                        <span class="nav-link-text">{{ _('Users') }}</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseUsers">
+                        <li>
+                            <a href="{{ url_for('users.list') }}">{{ _('List') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('users.add') }}">{{ _('Add') }}</a>
+                        </li>
+                    </ul>
+                </li>
             {% endif %}
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseArticles"
@@ -146,7 +164,7 @@
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © Dimitris Vossos 2018 - Flask-{{ flask_version() }}</small>
+                <small>Copyright © Dimitris Vossos 2018</small>
             </div>
         </div>
     </footer>

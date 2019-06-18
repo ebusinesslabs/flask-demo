@@ -4,8 +4,9 @@ from sqlalchemy import func
 
 from ..articles.models import Article
 from ..auth.models import User
+from ..auth.decorators import role_required
 from ..main import bp
-
+import sys, platform
 
 @bp.route('/')
 def index():
@@ -61,3 +62,11 @@ def dashboard():
 def search_list():
     articles = Article.query.filter(Article.body.like('%' + request.form['search'] + '%'))
     return render_template('main/search_list.html', articles=articles)
+
+
+@bp.route('/sysinfo', methods=['GET'])
+@login_required
+@role_required('Administrator')
+def sysinfo():
+    data = {'python_version': sys.version, 'platform_version': platform.version()}
+    return render_template('main/sysinfo.html', data=data)
