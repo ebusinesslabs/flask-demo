@@ -3,12 +3,12 @@ from .. import db
 
 class Config(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    entity = db.Column(db.String(128))
-    value = db.Column(db.BLOB)
+    entity = db.Column(db.String(128), unique=True)
+    value = db.Column(db.String(256))
 
-    def __init(self, entity):
+    def __init(self, entity, value = ''):
         self.entity = entity
-        self.value = ''
+        self.value = value
 
     def save(self):
         db.session.add(self)

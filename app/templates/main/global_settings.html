@@ -8,11 +8,14 @@
         <div class="card-body">
             <form method="post">
                 <div class="form-group">
-                    {{ form.offline.label }}
-                    <div>{{ form.offline}}</div>
+                    {{ form.hidden_tag() }}
                 </div>
                 <div class="form-group">
-                    {{ form.registration.label }}
+                    <strong>{{ form.offline.label }}</strong>
+                    <div>{{ form.offline }}</div>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.registration.label }}</strong>
                     <div>{{ form.registration }}</div>
                 </div>
                 {{ form.submit(class='btn btn-success float-right') }}
@@ -24,7 +27,18 @@
 {% block inlinejs %}
     <script>
     $(document).ready(function () {
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+            PNotify.success({
+                title: 'Saving Settings',
+                text: '{{ message }}',
+                styling: 'material',
+            });
+            {% endfor %}
+        {% endwith %}
+
         $("#offline").bootstrapSwitch();
+
         $("#registration").bootstrapSwitch();
     })
     </script>

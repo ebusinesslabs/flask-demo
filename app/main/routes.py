@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, abort, flash
 from flask_login import login_required
 from sqlalchemy import func
 
@@ -8,7 +8,8 @@ from ..auth.decorators import role_required
 from ..main import bp
 from .forms import SettingsForm
 from .models import Config
-import sys, platform, re
+import sys, platform
+from distutils import util
 
 
 @bp.route('/')
@@ -80,17 +81,19 @@ def sysinfo():
 @role_required('Administrator')
 def settings():
     offline = Config.query.filter(Config.entity == 'offline').first()
+    if offline is None:
+        offline = Config(entity='offline', value='False')
     registration = Config.query.filter(Config.entity == 'registration').first()
-    form = SettingsForm(offline=bool(offline.value), registration=bool(registration.value))
+    if registration is None:
+        registration = Config(entity='registration', value='False')
+    form = SettingsForm(
+        offline = util.strtobool(offline.value),
+        registration = util.strtobool(registration.value)
+    )
     if form.is_submitted():
-        offline = Config.query.filter(Config.entity == 'offline').first()
-        if offline is None:
-            offline = Config(entity='offline')
-        offline.value = str(form.offline.data).encode()
+        offline.value = str(form.offline.data)
+        registration.value = str(form.registration.data)
         offline.save()
-        registration = Config.query.filter(Config.entity == 'registration').first()
-        if registration is None:
-            registration = Config(entity='registration')
-        registration.value = str(form.registration.data).encode()
         registration.save()
+        flash('Global settings saved successfully.')
     return render_template('main/global_settings.html', form=form)

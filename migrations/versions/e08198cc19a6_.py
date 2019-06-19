@@ -1,8 +1,8 @@
-"""config table
+"""empty message
 
-Revision ID: 898da4d92746
+Revision ID: e08198cc19a6
 Revises: 99dc7ef4b73f
-Create Date: 2019-06-19 13:41:49.195146
+Create Date: 2019-06-19 21:33:49.399466
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '898da4d92746'
+revision = 'e08198cc19a6'
 down_revision = '99dc7ef4b73f'
 branch_labels = None
 depends_on = None
@@ -21,8 +21,9 @@ def upgrade():
     op.create_table('config',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('entity', sa.String(length=128), nullable=True),
-    sa.Column('value', sa.BLOB(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('value', sa.String(length=256), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('entity')
     )
     # ### end Alembic commands ###
 
