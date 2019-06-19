@@ -8,50 +8,54 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>{{ _('Entity') }}</th>
-                <th>{{ _('Value') }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ _('Operating System') }}</td>
-                <td>{{ data.platform_version }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Python') }}</td>
-                <td>{{ data.python_version }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Flask') }}</td>
-                <td>{{ flask_version() }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Host') }}</td>
-                <td>{{ request.host }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Database URI') }}</td>
-                <td>{{ config.get('SQLALCHEMY_DATABASE_URI') }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('User Agent') }}</td>
-                <td>{{ request.user_agent }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Server Software') }}</td>
-                <td>{{ request.environ['SERVER_SOFTWARE'] }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Session Cookie Name') }}</td>
-                <td>{{ config.get('SESSION_COOKIE_NAME') }}</td>
-            </tr>
-            <tr>
-                <td>{{ _('Maximum Upload Filesize') }}</td>
-                <td>{{ config.get('MAX_CONTENT_LENGTH') | filesizeformat }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card mt-3">
+    <div class="card-header"><h3>{{ _('System Information') }}</h3></div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{{ _('Entity') }}</th>
+                    <th>{{ _('Value') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ _('Operating System') }}</td>
+                    <td>{{ data.platform_version }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Python') }}</td>
+                    <td>{{ data.python_version }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Flask') }}</td>
+                    <td>{{ flask_version() }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Host') }}</td>
+                    <td>{{ request.host }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Database URI') }}</td>
+                    <td>{{ config.get('SQLALCHEMY_DATABASE_URI') }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('User Agent') }}</td>
+                    <td>{{ request.user_agent }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Server Software') }}</td>
+                    <td>{{ request.environ['SERVER_SOFTWARE'] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Session Cookie Name') }}</td>
+                    <td>{{ config.get('SESSION_COOKIE_NAME') }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _('Maximum Upload Filesize') }}</td>
+                    <td>{{ config.get('MAX_CONTENT_LENGTH') | filesizeformat }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
