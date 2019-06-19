@@ -1,6 +1,7 @@
 from app import create_app, db
 from app.auth.models import User, Role
 from app.articles.models import Article
+from app.main.models import Config
 from flask import g
 import pytz, flask
 
@@ -26,7 +27,7 @@ def get_lang_code(endpoint, values):
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'User': User, 'Role': Role, 'Article': Article}
+    return {'db': db, 'User': User, 'Role': Role, 'Article': Article, 'Config': Config}
 
 
 @app.template_filter('localdatetime')

@@ -6,7 +6,10 @@ from ..articles.models import Article
 from ..auth.models import User
 from ..auth.decorators import role_required
 from ..main import bp
-import sys, platform
+from .forms import SettingsForm
+from .models import Config
+import sys, platform, re
+
 
 @bp.route('/')
 def index():
@@ -70,3 +73,24 @@ def search_list():
 def sysinfo():
     data = {'python_version': sys.version, 'platform_version': platform.version()}
     return render_template('main/sysinfo.html', data=data)
+
+
+@bp.route('/settings', methods=['GET', 'POST'])
+@login_required
+@role_required('Administrator')
+def settings():
+    offline = Config.query.filter(Config.entity == 'offline').first()
+    registration = Config.query.filter(Config.entity == 'registration').first()
+    form = SettingsForm(offline=bool(offline.value), registration=bool(registration.value))
+    if form.is_submitted():
+        offline = Config.query.filter(Config.entity == 'offline').first()
+        if offline is None:
+            offline = Config(entity='offline')
+        offline.value = str(form.offline.data).encode()
+        offline.save()
+        registration = Config.query.filter(Config.entity == 'registration').first()
+        if registration is None:
+            registration = Config(entity='registration')
+        registration.value = str(form.registration.data).encode()
+        registration.save()
+    return render_template('main/global_settings.html', form=form)
