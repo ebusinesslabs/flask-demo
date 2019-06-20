@@ -48,6 +48,6 @@ def flask_version():
 @app.before_request
 def set_offline():
     offline = Config.query.filter(Config.entity == 'offline').first()
-    endpoints = ['main.settings', 'auth.login', 'auth.logout']
+    endpoints = ['main.settings', 'auth.login', 'auth.logout', 'static']
     if util.strtobool(offline.value) and request.endpoint not in endpoints:
         abort(503)
