@@ -3,9 +3,10 @@ from flask import render_template, redirect, url_for, flash, request, current_ap
 from .forms import LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm
 from flask_login import current_user, login_user, logout_user
 from .models import User, Role
+from ..main.models import Config
 import hashlib, time
 from flask_mail import Mail, Message
-
+from distutils import util
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,6 +37,7 @@ def login():
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     register_form = RegisterForm()
+    registration = Config.query.filter(Config.entity == 'registration').first()
     if register_form.validate_on_submit():
         user = User()
         user.fullname = register_form.fullname.data
@@ -48,7 +50,7 @@ def register():
         user.save()
         flash('You are now a registered user.', category='success')
         return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', form=register_form)
+    return render_template('auth/register.html', form=register_form, registration=util.strtobool(registration.value))
 
 
 @bp.route('/logout')

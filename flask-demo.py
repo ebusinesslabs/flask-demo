@@ -2,8 +2,9 @@ from app import create_app, db
 from app.auth.models import User, Role
 from app.articles.models import Article
 from app.main.models import Config
-from flask import g
+from flask import g, abort, request
 import pytz, flask
+from distutils import util
 
 app = create_app()
 
@@ -42,3 +43,11 @@ def localdatetime(value):
 @app.template_global()
 def flask_version():
     return flask.__version__
+
+
+@app.before_request
+def set_offline():
+    offline = Config.query.filter(Config.entity == 'offline').first()
+    endpoints = ['main.settings', 'auth.login', 'auth.logout']
+    if util.strtobool(offline.value) and request.endpoint not in endpoints:
+        abort(503)
