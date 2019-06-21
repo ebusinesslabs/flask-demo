@@ -21,7 +21,9 @@ def index():
 @bp.route('/view/<int:article_id>')
 def view_article(article_id):
     article = Article.query.get_or_404(article_id)
-    return render_template('main/article_view.html', article=article)
+    if article.status:
+        return render_template('main/article_view.html', article=article)
+    abort(404)
 
 
 @bp.route('/blank')
@@ -64,7 +66,10 @@ def dashboard():
 
 @bp.route('/search', methods=['POST'])
 def search_list():
-    articles = Article.query.filter(Article.body.like('%' + request.form['search'] + '%'))
+    articles = Article.query\
+        .filter(Article.body.like('%' + request.form['search'] + '%'))\
+        .filter(Article.status == 1)\
+        .all()
     return render_template('main/search_list.html', articles=articles)
 
 
