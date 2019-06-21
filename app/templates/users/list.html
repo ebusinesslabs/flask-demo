@@ -24,6 +24,10 @@
                     {{ form.role(class='form-control') }}
                 </div>
                 <div class="form-group">
+                    {{ form.status.label }}
+                    {{ form.status(class='form-control') }}
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-success float-right ml-1">{{ _('Search') }}</button>
                     <a href="{{ url_for('users.list') }}" class="btn btn-light float-right ml-1">{{ _('Reset') }}</a>
                     <div class="clearfix"></div>
@@ -95,7 +99,7 @@
             {% endfor %}
             {% endwith %}
 
-            $("#role").select2({
+            $("#role, #status").select2({
                 width: '100%'
             });
         });

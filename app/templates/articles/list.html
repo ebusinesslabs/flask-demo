@@ -15,6 +15,10 @@
                     {{ form.title.label }}
                     {{ form.title(class='form-control') }}
                 </div>
+                <div class="form-group">
+                    {{ form.status.label }}
+                    {{ form.status(class='form-control') }}
+                </div>
                 {% if current_user.has_role('Administrator') or current_user.has_role('Editor') %}
                 <div class="form-group">
                     {{ form.author.label }}
@@ -113,7 +117,7 @@
 {% block inlinejs %}
     <script>
         $(document).ready(function () {
-            $("#author").select2({
+            $("#author, #status").select2({
                 width: '100%'
             });
 

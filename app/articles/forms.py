@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (
-    StringField, SubmitField, BooleanField, FileField, TextAreaField, HiddenField, DateTimeField
+    StringField, SubmitField, BooleanField, FileField, TextAreaField, HiddenField, DateTimeField, SelectField
 )
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import Length
@@ -27,6 +27,7 @@ class UpdateForm(AddForm):
 class SearchForm(FlaskForm):
     title = StringField(label='Title', validators=[Length(min=4, max=128)])
     author = QuerySelectField(label=_l('Author'), allow_blank=True, blank_text='')
+    status = SelectField(label=_l('Status'), choices=[('', ''),(1, 'Active'),(0, 'Inactive')])
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)

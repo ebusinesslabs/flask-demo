@@ -29,6 +29,8 @@ def list_view():
                 query_article = query_article.filter(Article.title.like('%' + parameter[1] + '%'))
             elif parameter[0] == 'author' and parameter[1] != '__None':
                 query_article = query_article.join('author').filter(User.id == parameter[1])
+            elif parameter[0] == 'status' and parameter[1] != '':
+                query_article = query_article.filter(Article.status == parameter[1])
     page = request.args.get('page', 1, type=int)
     if current_user.has_role('Administrator') or current_user.has_role('Editor'):
         articles = query_article.order_by(Article.createdat).paginate(page, 10, False)

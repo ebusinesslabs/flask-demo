@@ -33,6 +33,8 @@ def list():
                 query_user = query_user.filter(User.fullname.like('%' + parameter[1] + '%'))
             elif parameter[0] == 'role' and parameter[1] != '__None':
                 query_user = query_user.join('roles').filter(Role.id == parameter[1])
+            elif parameter[0] == 'status' and parameter[1] != '':
+                query_user = query_user.filter(User.status == parameter[1])
     page = request.args.get('page', 1, type=int)
     users = query_user.order_by(User.id).paginate(page, 10, False)
 

@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import StringField, SubmitField, HiddenField, PasswordField, BooleanField, FileField, DateTimeField
+from wtforms import (StringField, SubmitField, HiddenField, PasswordField, BooleanField,
+                     FileField, DateTimeField, SelectField)
 from wtforms.ext.sqlalchemy.fields import QuerySelectMultipleField, QuerySelectField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
 from .validators import UniqueUsername, UniqueEmail
@@ -36,6 +37,7 @@ class SearchUserForm(FlaskForm):
     fullname = StringField(label=_l('Full name'))
     email = StringField(label=_l('Email'))
     role = QuerySelectField(label=_l('Role'), allow_blank=True, blank_text='')
+    status = SelectField(label=_l('Status'), choices=[('', ''), (1, 'Active'), (0, 'Inactive')])
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
