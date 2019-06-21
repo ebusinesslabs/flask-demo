@@ -5,6 +5,7 @@ from app.main.models import Config
 from flask import g, abort, request
 import pytz, flask
 from distutils import util
+from flask_login import current_user
 
 app = create_app()
 
@@ -51,3 +52,8 @@ def set_offline():
     endpoints = ['main.settings', 'auth.login', 'auth.logout', 'static']
     if util.strtobool(offline.value) and request.endpoint not in endpoints:
         abort(503)
+
+# @app.before_request
+# def check_notifications():
+#     if current_user.is_authenticated:
+#         print(current_user)
