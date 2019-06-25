@@ -54,12 +54,14 @@ def dashboard():
     for record in articles_records:
         articles.append(record[1])
         articles_dates.append(record[0].strftime('%d/%m/%Y'))
+    inactive_articles = Article.query.filter(Article.status == False).all()
     data = {
         'users_count': User.query.count(),
         'articles_count': Article.query.count(),
         'articles': articles,
         'articles_dates': articles_dates,
-        'articles_per_user': articles_per_user
+        'articles_per_user': articles_per_user,
+        'inactive_articles': inactive_articles,
     }
     return render_template('main/dashboard.html', data=data)
 
