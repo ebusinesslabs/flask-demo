@@ -109,6 +109,31 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            {% if not current_user.is_anonymous %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-fw fa-bell"></i>
+                    <span class="d-lg-none">Notifications
+                        <span class="badge badge-pill badge-warning"></span>
+                    </span>
+                    <span class="indicator text-warning d-none d-lg-block">
+                        <i class="fa fa-fw fa-circle"></i>
+                    </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+                    <h6 class="dropdown-header">New Articles:</h6>
+                    <div class="dropdown-divider"></div>
+                    {% for inactive in g.inactive_articles %}
+                        <a class="dropdown-item" href="{{ url_for('articles.update', id=inactive.id) }}">
+                            <strong>{{ inactive.title }}</strong>
+                            <div class="dropdown-message small">{{ inactive.slug }}</div>
+                            <div class="small float-right text-muted">{{ inactive.createdat | localdatetime }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </li>
+            {% endif %}
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0 mr-lg-2" method="post" action="{{ url_for('main.search_list') }}">
                     <div class="input-group">

@@ -6,6 +6,7 @@ from flask import g, abort, request
 import pytz, flask
 from distutils import util
 from flask_login import current_user
+from datetime import datetime, timedelta
 
 app = create_app()
 
@@ -53,7 +54,13 @@ def set_offline():
     if util.strtobool(offline.value) and request.endpoint not in endpoints:
         abort(503)
 
-# @app.before_request
-# def check_notifications():
-#     if current_user.is_authenticated:
-#         print(current_user)
+
+@app.before_request
+def check_notifications():
+    if current_user.is_authenticated and current_user.has_role('Administrator'):
+        inactive_articles = Article.query\
+            .filter(Article.status == False)\
+            .filter(Article.createdat >= datetime.now() - timedelta(days=1))\
+            .all()
+        if len(inactive_articles) > 0:
+            g.inactive_articles = inactive_articles
