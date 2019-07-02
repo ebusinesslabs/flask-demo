@@ -1,14 +1,13 @@
-from flask import render_template, request, abort, flash
+from flask import render_template, request, abort, flash, send_from_directory, current_app
 from flask_login import login_required
 from sqlalchemy import func
-
 from ..articles.models import Article
 from ..auth.models import User
 from ..auth.decorators import role_required
 from ..main import bp
 from .forms import SettingsForm
 from .models import Config
-import sys, platform
+import sys, platform, os
 from distutils import util
 
 
@@ -104,3 +103,8 @@ def settings():
         registration.save()
         flash('Global settings saved successfully.')
     return render_template('main/global_settings.html', form=form)
+
+
+@bp.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(current_app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
