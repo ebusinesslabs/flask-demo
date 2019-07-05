@@ -56,8 +56,8 @@ def set_offline():
 
 
 @app.before_request
-def check_notifications():
-    if current_user.is_authenticated and current_user.has_role('Administrator'):
+def check_inactive_articles():
+    if current_user.is_authenticated and (current_user.has_role('Administrator') or current_user.has_role('Editor')):
         inactive_articles = Article.query\
             .filter(Article.status == False)\
             .filter(Article.createdat >= datetime.now() - timedelta(days=1))\

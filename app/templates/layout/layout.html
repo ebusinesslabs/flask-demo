@@ -9,7 +9,7 @@
     <meta name="author" content="Dimitris Vossos">
     <title>Flaks Demo Application</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <ling rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}"
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
     <!-- Bootstrap core CSS-->
     <link href="{{ url_for('static', filename='node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom fonts for this template-->
@@ -123,11 +123,11 @@
                     </span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header">New Articles:</h6>
-                    <div class="dropdown-divider"></div>
                     {% for inactive in g.inactive_articles %}
+                        <h6 class="dropdown-header">Today Inactive Articles:</h6>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url_for('articles.update', id=inactive.id) }}">
-                            <strong>{{ inactive.title }}</strong>
+                            <div class="dropdown-message"><strong>{{ inactive.title }}</strong></div>
                             <div class="dropdown-message small">{{ inactive.slug }}</div>
                             <div class="small float-right text-muted">{{ inactive.createdat | localdatetime }}</div>
                         </a>

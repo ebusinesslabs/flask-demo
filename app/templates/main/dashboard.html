@@ -12,9 +12,7 @@
                         <i class="fa fa-fw fa-users"></i>
                     </div>
                     <div class="mr-4">
-                        <h1 class="d-inline">{{ data['users_count'] }}
-
-                        </h1>
+                        <h1 class="d-inline">{{ data['users_count'] }}</h1>
                         <h2><small>{{ _('users') }}</small></h2>
                     </div>
                 </div>
@@ -80,8 +78,9 @@
                     {% for inactive in data['inactive_articles'] %}
                     <a class="list-group-item list-group-item-action" href="{{ url_for('articles.update', id=inactive.id) }}">
                         <div class="media">
+                            {% set filename = url_for('static', filename='images/articles/' ~ inactive.image | default('no-image.jpg', true)) %}
                             <img class="d-flex mr-3 rounded-circle"
-                                 src="{{ url_for('static', filename='images/articles/'~inactive.image) }}"
+                                 src="{{ filename }}"
                                 style="width: 60px; height:60px;">
                             <div class="media-body">
                                 <strong>{{ inactive.title }}</strong>
