@@ -115,12 +115,14 @@
                 <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-fw fa-bell"></i>
-                    <span class="d-lg-none">Notifications
-                        <span class="badge badge-pill badge-warning"></span>
-                    </span>
-                    <span class="indicator text-warning d-none d-lg-block">
-                        <i class="fa fa-fw fa-circle"></i>
-                    </span>
+                    {% if g.inactive_articles %}
+                        <span class="d-lg-none">Notifications
+                            <span class="badge badge-pill badge-warning"></span>
+                        </span>
+                        <span class="indicator text-warning d-none d-lg-block">
+                            <i class="fa fa-fw fa-circle"></i>
+                        </span>
+                    {% endif %}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="alertsDropdown">
                     {% for inactive in g.inactive_articles %}
@@ -131,6 +133,8 @@
                             <div class="dropdown-message small">{{ inactive.slug }}</div>
                             <div class="small float-right text-muted">{{ inactive.createdat | localdatetime }}</div>
                         </a>
+                    {% else %}
+                        <span class="dropdown-header">{{ _('No inactive articles') }}</span>
                     {% endfor %}
                 </div>
             </li>
