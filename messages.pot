@@ -8,60 +8,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-06 20:17+0300\n"
+"POT-Creation-Date: 2019-07-16 11:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
-#: app/articles/forms.py:9 app/templates/articles/list.html:17
+#: app/articles/forms.py:13 app/templates/articles/list.html:46
 msgid "Title"
 msgstr ""
 
-#: app/articles/forms.py:10 app/templates/articles/list.html:18
+#: app/articles/forms.py:14 app/templates/articles/list.html:47
 msgid "Slug"
 msgstr ""
 
-#: app/articles/forms.py:11
+#: app/articles/forms.py:15
 msgid "Body"
 msgstr ""
 
-#: app/articles/forms.py:12 app/templates/articles/list.html:20
-#: app/templates/users/list.html:20 app/users/forms.py:18
+#: app/articles/forms.py:16 app/articles/forms.py:30
+#: app/templates/articles/list.html:49 app/templates/users/list.html:51
+#: app/users/forms.py:19 app/users/forms.py:40
 msgid "Status"
 msgstr ""
 
-#: app/articles/forms.py:13 app/users/forms.py:19
+#: app/articles/forms.py:17 app/users/forms.py:20
 msgid "Image"
 msgstr ""
 
-#: app/articles/forms.py:14
+#: app/articles/forms.py:18
 msgid "Submit"
 msgstr ""
 
-#: app/articles/forms.py:19
+#: app/articles/forms.py:23
 msgid "Created at"
 msgstr ""
 
-#: app/articles/forms.py:20 app/templates/articles/list.html:21
-#: app/users/forms.py:22
+#: app/articles/forms.py:24 app/templates/articles/list.html:50
+#: app/users/forms.py:23
 msgid "Delete"
 msgstr ""
 
-#: app/articles/routes.py:37 app/articles/routes.py:63
+#: app/articles/forms.py:29 app/templates/articles/list.html:48
+msgid "Author"
+msgstr ""
+
+#: app/articles/routes.py:58 app/articles/routes.py:84
 msgid "Article saved successfully."
 msgstr ""
 
-#: app/auth/forms.py:9 app/auth/forms.py:18 app/templates/users/list.html:18
-#: app/users/forms.py:14
+#: app/auth/forms.py:9 app/auth/forms.py:18 app/templates/users/list.html:49
+#: app/users/forms.py:15
 msgid "Username"
 msgstr ""
 
 #: app/auth/forms.py:10 app/auth/forms.py:19 app/auth/forms.py:34
-#: app/users/forms.py:16 app/users/forms.py:31
+#: app/users/forms.py:17 app/users/forms.py:32
 msgid "Password"
 msgstr ""
 
@@ -73,8 +78,8 @@ msgstr ""
 msgid "Fullname"
 msgstr ""
 
-#: app/auth/forms.py:17 app/auth/forms.py:29 app/templates/users/list.html:19
-#: app/users/forms.py:15
+#: app/auth/forms.py:17 app/auth/forms.py:29 app/templates/users/list.html:50
+#: app/users/forms.py:16 app/users/forms.py:38
 msgid "Email"
 msgstr ""
 
@@ -86,13 +91,25 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: app/auth/forms.py:25 app/users/forms.py:20
+#: app/auth/forms.py:25 app/users/forms.py:21
 msgid "Roles"
 msgstr ""
 
 #: app/auth/forms.py:30 app/auth/forms.py:36 app/templates/auth/forgot.html:5
 #: app/templates/auth/reset.html:5
 msgid "Reset Password"
+msgstr ""
+
+#: app/main/forms.py:7
+msgid "Offline"
+msgstr ""
+
+#: app/main/forms.py:8
+msgid "Registration"
+msgstr ""
+
+#: app/main/forms.py:9 app/users/forms.py:33
+msgid "Save"
 msgstr ""
 
 #: app/templates/articles/add.html:4
@@ -104,44 +121,52 @@ msgid "Create a new article"
 msgstr ""
 
 #: app/templates/articles/add.html:56 app/templates/articles/update.html:66
-#: app/templates/layout/layout.html:167 app/templates/users/add.html:73
+#: app/templates/layout/layout.html:218 app/templates/users/add.html:73
 #: app/templates/users/update.html:88
 msgid "Cancel"
 msgstr ""
 
-#: app/templates/articles/list.html:4 app/templates/layout/layout.html:70
+#: app/templates/articles/list.html:4 app/templates/layout/layout.html:92
 msgid "Articles"
 msgstr ""
 
-#: app/templates/articles/list.html:9
+#: app/templates/articles/list.html:9 app/templates/users/list.html:9
+msgid "Filters"
+msgstr ""
+
+#: app/templates/articles/list.html:29 app/templates/users/list.html:31
+msgid "Search"
+msgstr ""
+
+#: app/templates/articles/list.html:30 app/templates/users/list.html:32
+msgid "Reset"
+msgstr ""
+
+#: app/templates/articles/list.html:38
 msgid "List of articles"
 msgstr ""
 
-#: app/templates/articles/list.html:19
-msgid "Author"
-msgstr ""
-
-#: app/templates/articles/list.html:22
+#: app/templates/articles/list.html:51 app/templates/users/list.html:52
 msgid "Edit"
 msgstr ""
 
-#: app/templates/articles/list.html:42 app/templates/articles/list.html:48
+#: app/templates/articles/list.html:71 app/templates/articles/list.html:77
 msgid "Delete article"
 msgstr ""
 
-#: app/templates/articles/list.html:52
+#: app/templates/articles/list.html:81
 msgid "Please confirm the deletion of article"
 msgstr ""
 
-#: app/templates/articles/list.html:57
+#: app/templates/articles/list.html:86
 msgid "No"
 msgstr ""
 
-#: app/templates/articles/list.html:60
+#: app/templates/articles/list.html:89
 msgid "Yes"
 msgstr ""
 
-#: app/templates/articles/list.html:69
+#: app/templates/articles/list.html:98
 msgid "Edit article"
 msgstr ""
 
@@ -170,7 +195,7 @@ msgid "Register an Account"
 msgstr ""
 
 #: app/templates/auth/login.html:5 app/templates/auth/reset.html:34
-#: app/templates/layout/layout.html:106
+#: app/templates/layout/layout.html:157
 msgid "Login"
 msgstr ""
 
@@ -178,44 +203,68 @@ msgstr ""
 msgid "Forgot Password?"
 msgstr ""
 
-#: app/templates/auth/register.html:56
+#: app/templates/auth/register.html:9
+msgid "Registration is disabled."
+msgstr ""
+
+#: app/templates/auth/register.html:59
 msgid "Login page"
 msgstr ""
 
-#: app/templates/auth/register.html:57
+#: app/templates/auth/register.html:60
 msgid "Home page"
 msgstr ""
 
-#: app/templates/layout/layout.html:46
+#: app/templates/layout/layout.html:50
 msgid "Dashboard"
 msgstr ""
 
-#: app/templates/layout/layout.html:54 app/templates/users/list.html:4
+#: app/templates/layout/layout.html:58 app/templates/main/sysinfo.html:5
+msgid "Settings"
+msgstr ""
+
+#: app/templates/layout/layout.html:62
+msgid "General"
+msgstr ""
+
+#: app/templates/layout/layout.html:65
+msgid "SMTP"
+msgstr ""
+
+#: app/templates/layout/layout.html:68 app/templates/main/sysinfo.html:7
+msgid "Information"
+msgstr ""
+
+#: app/templates/layout/layout.html:76 app/templates/users/list.html:4
 msgid "Users"
 msgstr ""
 
-#: app/templates/layout/layout.html:58 app/templates/layout/layout.html:74
-#: app/templates/main/dashboard.html:22 app/templates/main/dashboard.html:41
+#: app/templates/layout/layout.html:80 app/templates/layout/layout.html:96
+#: app/templates/main/dashboard.html:20 app/templates/main/dashboard.html:39
 msgid "List"
 msgstr ""
 
-#: app/templates/layout/layout.html:61 app/templates/layout/layout.html:77
+#: app/templates/layout/layout.html:83 app/templates/layout/layout.html:99
 msgid "Add"
 msgstr ""
 
-#: app/templates/layout/layout.html:111 app/templates/layout/layout.html:168
+#: app/templates/layout/layout.html:137
+msgid "No inactive articles"
+msgstr ""
+
+#: app/templates/layout/layout.html:162 app/templates/layout/layout.html:219
 msgid "Logout"
 msgstr ""
 
-#: app/templates/layout/layout.html:131
+#: app/templates/layout/layout.html:182
 msgid "Home"
 msgstr ""
 
-#: app/templates/layout/layout.html:160
+#: app/templates/layout/layout.html:211
 msgid "Ready to Leave?"
 msgstr ""
 
-#: app/templates/layout/layout.html:165
+#: app/templates/layout/layout.html:216
 msgid "Select \"Logout\" below if you are ready to end your current session."
 msgstr ""
 
@@ -223,20 +272,76 @@ msgstr ""
 msgid "Dashbord"
 msgstr ""
 
-#: app/templates/main/dashboard.html:18
+#: app/templates/main/dashboard.html:16
 msgid "users"
 msgstr ""
 
-#: app/templates/main/dashboard.html:37
+#: app/templates/main/dashboard.html:35
 msgid "news"
 msgstr ""
 
-#: app/templates/main/dashboard.html:53
+#: app/templates/main/dashboard.html:51
 msgid "Articles per User"
 msgstr ""
 
-#: app/templates/main/dashboard.html:63
+#: app/templates/main/dashboard.html:61
 msgid "Articles per day"
+msgstr ""
+
+#: app/templates/main/dashboard.html:75
+msgid "Inactive articles"
+msgstr ""
+
+#: app/templates/main/global_settings.html:6
+msgid "Global Settings"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:12
+msgid "System Information"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:17
+msgid "Entity"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:18
+msgid "Value"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:23
+msgid "Operating System"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:27
+msgid "Python"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:31
+msgid "Flask"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:35
+msgid "Host"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:39
+msgid "Database URI"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:43
+msgid "User Agent"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:47
+msgid "Server Software"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:51
+msgid "Session Cookie Name"
+msgstr ""
+
+#: app/templates/main/sysinfo.html:55
+msgid "Maximum Upload Filesize"
 msgstr ""
 
 #: app/templates/users/add.html:4
@@ -252,12 +357,16 @@ msgstr ""
 msgid "type at least 8 characters"
 msgstr ""
 
-#: app/templates/users/list.html:9
+#: app/templates/users/list.html:40
 msgid "List of users"
 msgstr ""
 
-#: app/templates/users/list.html:17 app/users/forms.py:13
+#: app/templates/users/list.html:48 app/users/forms.py:14 app/users/forms.py:37
 msgid "Full name"
+msgstr ""
+
+#: app/templates/users/list.html:70
+msgid "Edit user"
 msgstr ""
 
 #: app/templates/users/update.html:4
@@ -268,19 +377,19 @@ msgstr ""
 msgid "Update user with"
 msgstr ""
 
-#: app/users/forms.py:17
+#: app/users/forms.py:18
 msgid "Confirm Password"
 msgstr ""
 
-#: app/users/forms.py:23
+#: app/users/forms.py:24
 msgid "Update"
 msgstr ""
 
-#: app/users/forms.py:32
-msgid "Save"
+#: app/users/forms.py:39
+msgid "Role"
 msgstr ""
 
-#: app/users/routes.py:43 app/users/routes.py:63
+#: app/users/routes.py:68 app/users/routes.py:88
 msgid "User saved successfully."
 msgstr ""
 
